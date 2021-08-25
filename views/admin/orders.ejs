@@ -1,0 +1,42 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbar'); %>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h2>Orders</h2>
+                <a href="/admin/Orders/new" class="btn btn-primary" style="align-content: right;">Tambah Layanan Baru</a>
+            </div>
+            <% if (type=='ADMIN' ) { %>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nama Layanan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <% for(var i = 0; i < data.length; i++){ %>
+                                <tr>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        <form action="/admin/services/delete:" method="post">
+                                            <a href="/admin/services/edit:/" class="btn btn-primary">Edit</a>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus ')" >Delete</button>
+                                        </form>
+
+                                    </td>
+                                </tr>
+                                <%} %> -->
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
+                    <form method="post" action="/login/logout">
+                        <button type="submit" class="btn btn-secondary" onclick="return confirm('Apakah anda yakin ingin logout?')">Logout</button> 
+                    </form>
+        </div>
+    </body>
+    </html>
