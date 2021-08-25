@@ -22,7 +22,7 @@
                                         <%= u.ServiceName%>
                                     </td>
                                     <td>
-                                        <form action="/admin/services/delete:<%= u.Id %>" method="post">
+                                        <form action="/admin/services/delete/<%= u.Id %>" method="post">
                                             <a href="/admin/services/edit:<%= u.Id %>/" class="btn btn-primary">Edit</a>
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus <%= u.ServiceName %>')" >Delete</button>
                                         </form>

@@ -28,21 +28,18 @@ router.get("/new", auth.checkAuthentication("ADMIN"), async function (request, r
 router.post('/submit', async function(req, res) {
 	let serviceName = req.body._serviceName
 	conn = await pool.getConnection()
-	rows = conn.query('INSERT INTO services (ServiceName) VALUES (?) ', [req.body._serviceName], function(err, results){
-		res.redirect('admin/services')
-	})
-	conn.end()
-  	return rows
+	conn.query('INSERT INTO services (ServiceName) VALUES (?) ', [req.body._serviceName], function(err, results){})
+	res.redirect('../');
+	conn.end();
 })
 
-router.post('/delete:id', async function(req, res) {
-	conn = await pool.getConnection()
-	serviceId = [req.params.id]
-	rows = conn.query('DELETE FROM services WHERE Id = ? ', serviceId, function(err, res) {
-		res.redirect('admin/services')
-	})
-	conn.end()
-  	return rows
+router.post('/delete/:id', async function(req, res) {
+	let serviceId = [req.params.id];
+	
+	conn = await pool.getConnection();
+	conn.query('DELETE FROM services WHERE Id = ? ', serviceId, function(err, res) {});
+	res.redirect('../');
+	conn.end();
 })
 
 module.exports = router  
