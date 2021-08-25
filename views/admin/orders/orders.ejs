@@ -5,7 +5,7 @@
         <div class="container">
             <div class="col-md-4 col-sm-4">
                 <h2>Orders</h2>
-                <a href="/admin/orders/create" class="btn btn-primary" style="align-content: right;">Tambah Layanan Baru</a>
+                <a href="/admin/Orders/new" class="btn btn-primary" style="align-content: right;">Tambah Layanan Baru</a>
             </div>
             
                 <div class="table-responsive">
@@ -25,9 +25,9 @@
                                     <td><%= data[i].IdOrders %></td>
                                     <td><%= data[i].Alamat %></td>
                                     <td>
-                                        <form action="/admin/orders/delete/<%= data[i].Id %>?_method=DELETE" method="POST">
-                                            <a href="/admin/orders/<%= data[i].Id %>/edit" class="btn btn-primary">Edit</a>
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus <%= data[i].IdOrders %>')" >Delete</button>
+                                        <form action="/admin/services/delete:" method="post">
+                                            <a href="/admin/services/edit:/" class="btn btn-primary">Edit</a>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus ')" >Delete</button>
                                         </form>
 
                                     </td>

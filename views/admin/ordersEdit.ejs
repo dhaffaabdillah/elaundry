@@ -1,0 +1,19 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbar'); %>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h2>Order Edit</h2>
+                <form method="POST" action="/admin/orders/update/<%= data.Id %>?_method=PUT"> 
+                    <input type="hidden" name="_id">
+                    <div class="form-row">
+                        <label>Nama Customer</label>    
+                        <input type="text" name="_custName" class="form-control" value="<%= data.NamaCustomers %>">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>  
+        </div>
+    </body>
+    </html>

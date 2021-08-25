@@ -1,6 +1,11 @@
 // const pool = require('../utils/db.js')
+// import { customAlphabet } from 'nanoid'
 // const {nanoid} = require('nanoid')
-// const orderId = nanoid(6)
+const { customAlphabet } = require('nanoid')
+const nanoid = customAlphabet('1234567890', 10)
+const tanggal = new Date()
+console.log(tanggal)
+
 
 module.exports = {
 
@@ -8,30 +13,32 @@ module.exports = {
 		con.query("SELECT * FROM orders", callback)
 	},
 
-	getById: function(con, callback, data){
+	getById: function(con, id, callback){
 		con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
 	},
 
-	create: function(con, callback, data){
+	create: function(con, data, callback){
 		con.query(`INSERT INTO  orders SET 
-			IdOrders = ' ${ data._id } ',
-			NamaCustomer = ' ${data._custName} ',
+			IdOrders =  '${orderId}' ,
+			NamaCustomers = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
 			Email = ' ${data._email} '
 			`, callback)
 	},
 
-	update: function(con, callback, data, id) {
-		con.query(`UPDATE orders SET 
+	update: function(con, data, id, callback) {
+		con.query(
+			`UPDATE orders SET 
 			NamaCustomer = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
 			Email = ' ${data._email} ',
-			WHERE Id = ' ${id} '`, callback)
+			WHERE Id =  ${id} `,
+		callback)
 	},
 
-	delete: function(con, callback, id) {
-		con.query(`DELETE orders WHERE Id = ' ${id} '`, callback)
+	destroy: function(con, id, callback) {
+		con.query(`DELETE orders WHERE Id =  ${id} `, callback)
 	}
 }

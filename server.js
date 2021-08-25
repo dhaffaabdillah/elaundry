@@ -25,14 +25,15 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }))
 app.use(flash())
 app.use(methodOverride("_method"))
 
-// port server
-app.listen(process.env.SERVER_PORT, function () {
-    console.log("Server udah jalan y: 127.0.0.1" + process.env.SERVER_PORT)
-});
-
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use("/login", loginRoute)
 app.use("/profile", profileRoute)
 app.use("/admin/services", serviceRoute)
 app.use("/admin/orders", ordersRoute)
+
+// port server
+app.listen(process.env.SERVER_PORT, function () {
+    console.log("Server udah jalan y: 127.0.0.1" + process.env.SERVER_PORT)
+});
+
