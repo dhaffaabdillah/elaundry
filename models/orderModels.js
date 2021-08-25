@@ -23,7 +23,7 @@ module.exports = {
 	},
 
 	update: function(con, callback, data, id) {
-		con.query(`UPDATE orders SET 
+		con.query(`UPDATE FROM orders SET 
 			NamaCustomer = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
@@ -32,6 +32,6 @@ module.exports = {
 	},
 
 	delete: function(con, callback, id) {
-		con.query(`DELETE orders WHERE Id = ' ${id} '`, callback)
+		con.query(`DELETE FROM orders WHERE Id = ' ${id} '`, callback)
 	}
 }
