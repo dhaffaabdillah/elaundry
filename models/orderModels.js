@@ -1,21 +1,18 @@
-// const pool = require('../utils/db.js')
-// import { customAlphabet } from 'nanoid'
-// const {nanoid} = require('nanoid')
 const { customAlphabet } = require('nanoid')
 const nanoid = customAlphabet('1234567890', 10)
 const tanggal = new Date()
 module.exports = {
 
-	get: function(con, callback) {
-		con.query("SELECT * FROM orders", callback)
+	get: async function(con, callback) {
+		await con.query("SELECT * FROM orders", callback)
 	},
 
-	getById: function(con, id, callback){
-		con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
+	getById: async function(con, id, callback){
+		await con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
 	},
 
-	create: function(con, data, callback){
-		con.query(`INSERT INTO  orders SET 
+	create: async function(con, data, callback){
+		await con.query(`INSERT INTO  orders SET 
 			IdOrders =  '${nanoid()}' ,
 			NamaCustomers = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
@@ -24,8 +21,8 @@ module.exports = {
 			`, callback)
 	},
 
-	update: function(con, data, id, callback) {
-		con.query(
+	update: async function(con, data, id, callback) {
+		await con.query(
 			`UPDATE orders SET 
 			NamaCustomers = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
@@ -35,7 +32,7 @@ module.exports = {
 		callback)
 	},
 
-	destroy: function(con, id, callback) {
-		con.query(`DELETE FROM orders WHERE Id =  ${id} `, callback)
+	destroy: async function(con, id, callback) {
+		await con.query(`DELETE FROM orders WHERE Id =  ${id} `, callback)
 	}
 }
