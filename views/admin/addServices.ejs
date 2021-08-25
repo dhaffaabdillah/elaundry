@@ -1,0 +1,21 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbar'); %>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h2>Tambah Layanan Baru</h2>
+            </div>
+            <!-- <% if (type=='ADMIN' ) { %> -->
+            <form method="post" action="/admin/services/submit">
+                <label>Nama Layanan</label>
+                <input type="text" name="_serviceName" class="form-control">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            <!-- <% } %> -->
+                    <form method="post" action="/login/logout">
+                        <button type="submit" class="btn btn-secondary" onclick="return confirm('Apakah anda yakin ingin logout?')">Logout</button> 
+                    </form>
+        </div>
+    </body>
+    </html>

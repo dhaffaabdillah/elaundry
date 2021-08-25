@@ -14,7 +14,7 @@ router.get("/user", auth.checkAuthentication("USER"), async function (request, r
 router.get("/admin", auth.checkAuthentication("ADMIN"), async function (request, response) {
   	let userData = await userModel.read(request.user.username);
   	let listData = await userModel.list();
-	response.render("profile", {
+	response.render("admin/profile", {
     	user: userData,
     	data: listData,
     	type: "ADMIN",
