@@ -4,7 +4,7 @@
 const { customAlphabet } = require('nanoid')
 const nanoid = customAlphabet('1234567890', 10)
 const tanggal = new Date()
-console.log(tanggal)
+console.log(nanoid())
 
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
 
 	create: function(con, data, callback){
 		con.query(`INSERT INTO  orders SET 
-			IdOrders =  '${nanoid}' ,
+			IdOrders =  '${nanoid()}' ,
 			NamaCustomers = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
@@ -29,7 +29,7 @@ module.exports = {
 
 	update: function(con, data, id, callback) {
 		con.query(
-			`UPDATE orders SET 
+			`UPDATE FROM orders SET 
 			NamaCustomer = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
@@ -39,6 +39,6 @@ module.exports = {
 	},
 
 	destroy: function(con, id, callback) {
-		con.query(`DELETE orders WHERE Id =  ${id} `, callback)
+		con.query(`DELETE FROM orders WHERE Id =  ${id} `, callback)
 	}
 }
