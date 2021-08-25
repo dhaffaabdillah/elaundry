@@ -4,9 +4,6 @@
 const { customAlphabet } = require('nanoid')
 const nanoid = customAlphabet('1234567890', 10)
 const tanggal = new Date()
-console.log(nanoid())
-
-
 module.exports = {
 
 	get: function(con, callback) {
