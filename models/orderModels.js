@@ -19,7 +19,7 @@ module.exports = {
 
 	create: function(con, data, callback){
 		con.query(`INSERT INTO  orders SET 
-			IdOrders =  '${orderId}' ,
+			IdOrders =  '${nanoid}' ,
 			NamaCustomers = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
