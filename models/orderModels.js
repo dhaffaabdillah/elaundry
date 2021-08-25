@@ -26,12 +26,12 @@ module.exports = {
 
 	update: function(con, data, id, callback) {
 		con.query(
-			`UPDATE FROM orders SET 
-			NamaCustomer = ' ${data._custName} ',
+			`UPDATE orders SET 
+			NamaCustomers = ' ${data._custName} ',
 			Alamat = ' ${data._address} ',
 			NoTelp = ' ${data._noTel} ',
-			Email = ' ${data._email} ',
-			WHERE Id =  ${id} `,
+			Email = ' ${data._email} '
+			WHERE Id = ${id} `,
 		callback)
 	},
 
