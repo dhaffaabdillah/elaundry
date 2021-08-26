@@ -1,44 +1,36 @@
-<%- include('../partials/header'); %>
-<%- include('../partials/navbar'); %>
-    </head>
-    <body>
-        <div class="container">
-            <div class="col-md-4 col-sm-4">
-                <h2>Orders</h2>
-                <a href="/admin/orders/create" class="btn btn-primary" style="align-content: right;">Tambah Layanan Baru</a>
-            </div>
-            
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nama Customer</th>
-                                <th>Order Id</th>
-                                <th>Alamat</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(var i = 0; i < data.length; i++){ %>
-                                <tr>
-                                    <td><%= data[i].NamaCustomers %></td>
-                                    <td><%= data[i].IdOrders %></td>
-                                    <td><%= data[i].Alamat %></td>
-                                    <td>
-                                        <form action="/admin/orders/delete/<%= data[i].Id %>?_method=DELETE" method="POST">
-                                            <a href="/admin/orders/<%= data[i].Id %>/edit" class="btn btn-primary">Edit</a>
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus <%= data[i].IdOrders %>')" >Delete</button>
-                                        </form>
+<%- include('../partials/head'); %>
 
-                                    </td>
-                                </tr>
-                                <%} %>
-                        </tbody>
-                    </table>
+
+    <body class="">
+        <div class="page-container">
+            <%- include('../partials/sidebar'); %>
+            <div class="page-content">
+            <%- include('../partials/headerNew'); %>
+
+                <!-- main content disini -->
+                <div class="main-wrapper">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="alert alert-success" role="alert">
+                                        Wait 10 seconds, you will see a expiring warning. Wait 10 more seconds and you will see that you have been logged out.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
                 </div>
-                    <form method="post" action="/login/logout">
-                        <button type="submit" class="btn btn-secondary" onclick="return confirm('Apakah anda yakin ingin logout?')">Logout</button> 
-                    </form>
+                <!-- end main content -->
+                <%- include('../partials/footer'); %>
+                                  
+            </div>
+        </div>
+
+
         </div>
     </body>
+    <%- include('../partials/script'); %>
     </html>

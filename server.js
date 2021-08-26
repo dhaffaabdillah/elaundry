@@ -27,6 +27,7 @@ app.use(methodOverride("_method"))
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
+app.use(express.static(__dirname + '/public'));
 app.use("/login", loginRoute)
 app.use("/profile", profileRoute)
 app.use("/admin/services", serviceRoute)

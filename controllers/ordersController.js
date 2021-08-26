@@ -3,7 +3,7 @@ const Order = require('../models/orderModels')
 module.exports = {
 	index: async function(req, res){
 		Order.get(req.con, function(err, rows) {
-			res.render('./admin/orders', { data: rows})
+			res.render('./admin/orders', { title: "All Orders | ",  data: rows})
 		})
 	},
 	create: async function(req, res) {
