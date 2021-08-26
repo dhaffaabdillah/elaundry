@@ -23,7 +23,7 @@ router.post("/", async function (request, response) {
         await request.login(user, function (err) { });
 
         if (request.user.role === "ADMIN") {
-            response.redirect("/profile/admin");
+            response.redirect("/admin/");
         } else {
             response.redirect("/profile/user");
         }

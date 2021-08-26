@@ -24,7 +24,7 @@
                     <span class="visually-hidden">Loading...</span>
                     </div></a>
                     <div class="dropdown-menu dropdown-menu-end notif-drop-menu" aria-labelledby="notificationsDropDown">
-                        <h6 class="dropdown-header">Notifications</h6>
+                        <h6 class="dropdown-header">Notifications for <%= user.username%></h6>
                             <a href="#">
                                 <div class="header-notif">
                                     <div class="notif-image">
@@ -102,7 +102,12 @@
                                 <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#"><i data-feather="settings"></i>Settings</a>
                                     <a class="dropdown-item" href="#"><i data-feather="unlock"></i>Lock</a>
-                                    <a class="dropdown-item" href="#"><i data-feather="log-out"></i>Logout</a>
+                                    
+                                    <form method="post" action="/login/logout">
+                                        <!-- <a class="dropdown-item" href="/logout" onclick="return confirm("Apakah anda yakin ingin logout?") " ><i data-feather="log-out"></i>Logout</a> -->
+                                        
+                                        <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin logout?')"><i data-feather="log-out"></i>Logout</button>
+                                    </form>
                             </div>
                         </li>
                     </ul>

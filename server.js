@@ -12,6 +12,7 @@ auth.initialization(app)
 
 // router
 const loginRoute = require("./controllers/login.route")
+const adminRoute = require("./routes/adminRouter")
 const profileRoute = require("./controllers/profile.route")
 const serviceRoute = require("./controllers/service.route")
 const ordersRoute  = require("./routes/ordersRouter")
@@ -27,8 +28,9 @@ app.use(methodOverride("_method"))
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 app.use("/login", loginRoute)
+app.use("/admin", adminRoute)
 app.use("/profile", profileRoute)
 app.use("/admin/services", serviceRoute)
 app.use("/admin/orders", ordersRoute)
