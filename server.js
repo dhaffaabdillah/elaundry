@@ -16,6 +16,7 @@ const adminRoute = require("./routes/adminRouter")
 const profileRoute = require("./controllers/profile.route")
 const serviceRoute = require("./controllers/service.route")
 const ordersRoute  = require("./routes/ordersRouter")
+const publicRoute  = require("./routes/publicRouter")
 
 // use modules
 app.use(function(req, res, next) {
@@ -29,6 +30,11 @@ app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.static(__dirname + '/public'))
+
+//public
+app.use("/", publicRoute)
+
+//admin
 app.use("/login", loginRoute)
 app.use("/admin", adminRoute)
 app.use("/profile", profileRoute)
