@@ -1,0 +1,126 @@
+<%- include('./public-partials/head'); %>
+<%- include('./public-partials/navbar'); %>
+
+	<!-- Pricing Start -->
+	<section class=" bg-gray m-t-80" style="padding-bottom: 7rem; margin-bottom: 0;">
+		<img src="/assets/images/welcome/5.svg" class="img-fluid position-relative z-i-2" alt="">
+		<div class="container">
+			<div class="row text-center">
+				<div class="offset-lg-3 col-lg-6">
+					<div class="header-badge m-b-15">Kategori</div>
+					<h2 class="m-b-10"><%= title %></h2>
+					<p class="m-b-40">Harap menimbang pakaian laundry kemudian masukkan beratnya (dalam satuan Kg)</p>
+				</div>
+			</div>
+			<!-- <div class="row" >
+				
+			</div> -->
+		</div>
+	</section>
+	<!-- Pricing End -->
+
+	<section class="m-t-80">
+		<div class="container">
+			<div class="row m-b-30">
+				<!-- item start -->
+				<div class="col-lg-4 m-b-30 transition-3d-hover">
+					<div class="box border-box p-25 rounded text-center">
+						<h6 class="text-color-primary m-b-30">Kiloan - Cuci Basah</h6>
+						<span class="display-3 d-block m-b-40">2000/Kg</span>
+						<p class="m-b-40">Curabitur interdum nulla vel ligula ultrices ultricies. Fusce condi mentum dui vitae tempor.</p>
+						<div class="input-buttons primary">
+							<input type="number" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
+							<button ><h5 class="text-white">Kg</h5></button>
+						</div>
+					</div>
+				</div>
+				<!-- item end -->
+
+				<!-- item start -->
+				<div class="col-lg-4 m-b-30 transition-3d-hover">
+					<div class="box border-box p-25 rounded text-center">
+						<h6 class="text-color-success m-b-30">Kiloan - Cuci Kering</h6>
+						<span class="display-3 d-block m-b-40">2500/Kg</span>
+						<p class="m-b-40">Sed ornare massa ligula, at mollis mi accumsan pretium. Quisque eleifend ac velit vel rhoncus.</p>
+						<div class="input-buttons primary">
+							<input type="number" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
+							<button ><h5 class="text-white">Kg</h5></button>
+						</div>
+					</div>
+				</div>
+				<!-- item end -->
+
+				<!-- item start -->
+				<div class="col-lg-4 m-b-30 transition-3d-hover">
+					<div class="box border-box p-25 rounded text-center">
+						<h6 class="text-color-primary m-b-30">Kiloan - Cuci Stetrika</h6>
+						<span class="display-3 d-block m-b-40">2250/Kg</span>
+						<p class="m-b-40">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+						<div class="input-buttons primary">
+							<input type="number" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
+							<button><h5 class="text-white">Kg</h5></button>
+						</div>
+					</div>
+				</div>
+				<!-- item end -->
+
+				<!-- item start -->
+				<div class="col-lg-4 m-b-30 transition-3d-hover">
+					<div class="box border-box p-25 rounded text-center">
+						<h6 class="text-color-primary m-b-30">Satuan</h6>
+						<span class="display-3 d-block m-b-40">Sprei</span>
+						<p class="m-b-40">S: 7500 M: 12000 L: 17000</p>
+						<div class="input-buttons primary">
+							<input type="number" placeholder="(S) Masukan Jumlah cth: 10" min="0" max="50">
+							<button><h5 class="text-white">Qty</h5></button>
+						</div>
+						<div class="input-buttons primary">
+							<input type="number" placeholder="(M) Masukan Jumlah cth: 10" min="0" max="50">
+							<button><h5 class="text-white">Qty</h5></button>
+						</div>
+						<div class="input-buttons primary">
+							<input type="number" placeholder="(L) Masukan Jumlah cth: 10" min="0" max="50">
+							<button><h5 class="text-white">Qty</h5></button>
+						</div>
+					</div>
+				</div>
+				<!-- item end -->
+
+
+				
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="row text-center ">
+				<div class="d-flex flex-sm-row col-lg-7 col-md-6 col-sm-12">
+					<div class="col-lg-4 col-md-4 col-sm-12 sm-margin-bottom-30 d-flex justify-content-lg-end ">
+						<div class="count-item">
+							<p class="d-block">Total Harga*</p>
+							<h2 class="d-block m-b-15">17000</h2>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12 sm-margin-bottom-30 d-flex justify-content-lg-end ">
+						<div class="count-item">
+							<p class="d-block">Total Kiloan (Kg)</p>
+							<h2 class="d-block m-b-15">5</h2>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12 sm-margin-bottom-30 d-flex justify-content-lg-end ">
+						<div class="count-item">
+							<p class="d-block">Total Satuan</p>
+							<h2 class="d-block m-b-15">5</h2>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 sm-margin-bottom-30 d-flex justify-content-end align-items-center mb-3">
+					<button type="button" class="btn btn-lg btn-outline-primary" onclick="window.open('/pembayaran')">  Lanjutkan Pembayaran  <i class="fa fa-chevron-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<%- include('./public-partials/footer'); %>
+<%- include('./public-partials/script'); %>

@@ -1,9 +1,9 @@
-const express = require("express")
-const dotenv = require("dotenv")
-const flash = require("express-flash")
+const express = require("express");
+const dotenv = require("dotenv");
+const flash = require("express-flash");
 var methodOverride = require("method-override")
 dotenv.config()
-const app = express()
+const app = express();
 const bodyParser = require("body-parser")
 const auth = require("./utils/auth")
 const con = require("./utils/db2")
