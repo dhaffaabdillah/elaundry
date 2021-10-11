@@ -11,6 +11,10 @@ module.exports = {
 		await con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
 	},
 
+	getStatusProgress: async function(con, callback){
+		await con.query(`SELECT * FROM status_orders`, callback)
+	},
+
 	create: async function(con, data, callback){
 		await con.query(`INSERT INTO  orders SET 
 			IdOrders =  '${nanoid()}' ,
@@ -25,7 +29,8 @@ module.exports = {
 		await con.query(
 			`UPDATE orders SET 
 			NamaCustomers = ' ${data._custName} ',
-			Alamat = ' ${data._address} ',
+			Status = ' ${data._orderProgress} ',
+			Alamat = ' ${data._custAddress} ',
 			NoTelp = ' ${data._noTel} ',
 			Email = ' ${data._email} '
 			WHERE Id = ${id} `,

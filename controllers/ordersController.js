@@ -10,6 +10,12 @@ module.exports = {
     	res.render("./admin/ordersCreate")
   	},
 
+  	getStatus: async function(req, res) {
+  		Order.getStatusProgress(req.con, function(err, rows) {
+  			// body...
+  		})
+  	},
+
   	store: async function(req, res) {
     	Order.create(req.con, req.body, function(err) {
       		res.redirect("/admin/orders")
@@ -18,9 +24,11 @@ module.exports = {
 
   	edit: async function(req, res) {
     	Order.getById(req.con, req.params.id, function(err, rows) {
-
-      		res.render("admin/ordersEdit", { data: rows[0] })
+      		res.render("admin/ordersEdit", { title: "Edit Orders | ", data: rows[0] })
     	})
+    // 	Order.getStatusProgress(req.con, function(err, rows) {
+  		// 	res.render("admin/ordersEdit", { title: "Edit Orders | ", data2: rows })
+  		// })
   	},
 
   	update: async function(req, res) {

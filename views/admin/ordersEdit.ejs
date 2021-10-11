@@ -1,19 +1,57 @@
-<%- include('../partials/header'); %>
-<%- include('../partials/navbar'); %>
-    </head>
-    <body>
-        <div class="container">
-            <div class="col-md-4 col-sm-4">
-                <h2>Order Edit</h2>
-                <form method="POST" action="/admin/orders/update/<%= data.Id %>?_method=PUT"> 
-                    <input type="hidden" name="_id">
-                    <div class="form-row">
-                        <label>Nama Customer</label>    
-                        <input type="text" name="_custName" class="form-control" value="<%= data.NamaCustomers %>">
+<%- include('../partials/head'); %>
+<body class="">
+    <div class="page-container">
+        <%- include('../partials/sidebar'); %>
+        <div class="page-content">
+        <%- include('../partials/headerNew'); %>
+
+            <!-- main content disini -->
+            <div class="main-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>Edit Orders</h3>
+                        <form method="POST" action="/admin/orders/update/<%= data.Id %>?_method=PUT"> 
+                            <input type="hidden" name="_id">
+                            <div class="form-row">
+                                <label>Nama Customer</label>    
+                                <input type="text" name="_custName" class="form-control" value="<%= data.NamaCustomers %>">
+
+                                <label>Progress</label>
+                                <select name="_orderProgress" class="js-states form-control" id="chooseProgress">
+                                    <option value="1">New</option>
+                                    <option value="2">Pending</option>
+                                    <option value="3">On Progress</option>
+                                    <option value="4">Finish</option>
+                                </select>
+
+                                <label>Alamat</label>    
+                                <input type="text" name="_custAddress" class="form-control" value="<%= data.Alamat %>">
+
+
+                            </div><br>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
                     </div>
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </form>
-            </div>  
+
+                    
+                </div>
+            </div>
+            <!-- end main content -->
+            <%- include('../partials/footer'); %>
+                              
         </div>
-    </body>
-    </html>
+    </div>
+
+
+    </div>
+</body>
+<%- include('../partials/script'); %>
+<script type="text/javascript">
+$(document).ready(function() {
+    "use strict"
+    // var data = [ { id: 0, text: 'enhancement' }];
+    $('#dtableorders').DataTable()
+    $("#chooseProgress").select2()
+})
+</script>
+</html>

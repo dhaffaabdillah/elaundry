@@ -32,11 +32,12 @@ app.use(express.static(__dirname + '/public'))
 app.use("/login", loginRoute)
 app.use("/admin", adminRoute)
 app.use("/profile", profileRoute)
+app.use("/admin/users", adminRoute)
 app.use("/admin/services", serviceRoute)
 app.use("/admin/orders", ordersRoute)
 
 // port server
 app.listen(process.env.SERVER_PORT, function () {
-    console.log("Server udah jalan y: 127.0.0.1" + process.env.SERVER_PORT)
+    console.log("Server udah jalan y 127.0.0.1:" + process.env.SERVER_PORT)
 });
 
