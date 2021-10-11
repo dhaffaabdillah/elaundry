@@ -4,11 +4,16 @@ const tanggal = new Date()
 module.exports = {
 
 	get: async function(con, callback) {
+		// await con.query("SELECT NamaCustomers, IdOrders, Alamat, NoTelp, Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.IdStatus = orders.Status ", callback)
 		await con.query("SELECT * FROM orders", callback)
 	},
 
 	getById: async function(con, id, callback){
 		await con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
+	},
+
+	getDetailOrder: async function(con, id, callback){
+		await con.query(`SELECT NamaCustomers, IdOrders, Alamat, NoTelp, Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.IdStatus = orders.Status WHERE Id = ${id}`, callback)
 	},
 
 	getStatusProgress: async function(con, callback){
@@ -32,7 +37,8 @@ module.exports = {
 			Status = ' ${data._orderProgress} ',
 			Alamat = ' ${data._custAddress} ',
 			NoTelp = ' ${data._noTel} ',
-			Email = ' ${data._email} '
+			Email = ' ${data._email} ',
+			Status = ' ${data._orderProgress}'
 			WHERE Id = ${id} `,
 		callback)
 	},

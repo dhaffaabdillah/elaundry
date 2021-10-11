@@ -13,8 +13,8 @@
                         <table id="dtableorders" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Nama Customer</th>
                                     <th>Order Id</th>
+                                    <th>Nama Customer</th>
                                     <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -22,12 +22,13 @@
                             <tbody>
                                 <% for(var i = 0; i < data.length; i++){ %>
                                 <tr>
-                                    <td><%= data[i].NamaCustomers %></td>
                                     <td><%= data[i].IdOrders %></td>
+                                    <td><%= data[i].NamaCustomers %></td>
                                     <td><%= data[i].Alamat %></td>
                                     <td>
                                         <form action="/admin/orders/delete/<%= data[i].Id %>?_method=DELETE" method="POST">
                                             <a href="/admin/orders/<%= data[i].Id %>/edit" class="btn btn-primary">Edit</a>
+                                            <a href="/admin/orders/<%= data[i].Id %>/detail" class="btn btn-success">Detail</a>
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus <%= data[i].IdOrders %>')" >Delete</button>
                                         </form>
 

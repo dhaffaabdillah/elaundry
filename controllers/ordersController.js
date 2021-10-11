@@ -31,6 +31,12 @@ module.exports = {
   		// })
   	},
 
+  	show: async function(req, res) {
+  		Order.getDetailOrder(req.con, req.params.id, function(err,rows){
+  			res.render("admin/ordersDetail", {title: 'Detail Order | ', data: rows[0]})
+  		})
+  	},
+
   	update: async function(req, res) {
     	Order.update(req.con, req.body, req.params.id, function(err) {
       		res.redirect("/admin/orders")

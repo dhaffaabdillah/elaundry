@@ -1,0 +1,75 @@
+<%- include('../partials/head'); %>
+<body class="">
+    <div class="page-container">
+        <%- include('../partials/sidebar'); %>
+        <div class="page-content">
+        <%- include('../partials/headerNew'); %>
+
+            <!-- main content disini -->
+            <div class="main-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>Detail Orders</h3>
+                        <form method="POST" action="/admin/orders/update/<%= data.Id %>?_method=PUT"> 
+                            <input type="hidden" name="_id">
+                            <div class="row">
+                                <!-- <div class="form-group">
+                                    
+                                </div> -->
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>    
+                                    <input type="text" name="_custName" class="form-control" value="<%= data.NamaCustomers %>" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>No Telp</label>    
+                                    <input type="text" name="_custName" class="form-control" value="0<%= data.NoTelp %>" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Email</label>    
+                                    <input type="text" name="_custName" class="form-control" value="<%= data.Email %>" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Whatsapp</label>    
+                                    <!-- <input type="text" name="_custName" class="form-control" value="0<%= data.Email %>" disabled> -->
+                                    <br>
+                                    <a href="https://wa.me/+62<%= data.NoTelp %>?text=Hai+<%=data.NamaCustomers%>+laundry+kamu+sudah+selesai."><i class="fab fa-whatsapp-square"></i></a>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>Progress</label>
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.NamaStatus %>"disabled>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <label>Alamat</label>    
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.Alamat %>"disabled>
+                                </div>
+
+
+                            </div><br>
+                            
+                        </form>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- end main content -->
+            <%- include('../partials/footer'); %>
+                              
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<%- include('../partials/script'); %>
+<script type="text/javascript">
+$(document).ready(function() {
+    "use strict"
+    // var data = [ { id: 0, text: 'enhancement' }];
+    $('#dtableorders').DataTable()
+    $("#chooseProgress").select2()
+})
+</script>
+</html>
