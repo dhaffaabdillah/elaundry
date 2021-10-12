@@ -42,10 +42,6 @@ module.exports = {
 			`UPDATE orders SET 
 			NamaCustomers = ' ${data._custName} ',
 			Status = ' ${data._orderProgress} ',
-			Alamat = ' ${data._custAddress} ',
-			NoTelp = ' ${data._noTel} ',
-			Email = ' ${data._email} ',
-			Status = ' ${data._orderProgress}'
 			WHERE Id = ${id} `,
 		callback)
 	},
