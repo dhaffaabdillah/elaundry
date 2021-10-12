@@ -13,7 +13,7 @@ module.exports = {
 	},
 
 	getDetailOrder: async function(con, id, callback){
-		await con.query(`SELECT NamaCustomers, IdOrders, Alamat, NoTelp, Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.IdStatus = orders.Status WHERE Id = ${id}`, callback)
+		await con.query(`SELECT orders.NamaCustomers, orders.IdOrders, orders.Alamat, orders.NoTelp, orders.Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.IdStatus = orders.Status WHERE orders.Id = ${id}`, callback)
 	},
 
 	getStatusProgress: async function(con, callback){
