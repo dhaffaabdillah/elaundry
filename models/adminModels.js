@@ -1,6 +1,6 @@
 module.exports = {
 
 	totalOrders: async function(con, callback) {
-		await con.query("SELECT count(NamaCustomers) as totalOrders FROM orders ", callback)
+		await con.query("SELECT count(Id) as totalOrders FROM orders ", callback)
 	},
 }

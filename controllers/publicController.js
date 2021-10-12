@@ -121,33 +121,37 @@ module.exports = {
 	},
 
 	pembayaran: async function(req, res){
+		
+
+		let resii = req.params.resi;
+		console.log(resii);
+
+		Items.pembayaran(req.con, resii, function(err, rows) {})
+		console.log(resii);
+
+		Items.datauser(req.con, rows[0].usersId, function(err2, rows2) {})
+		console.log(resii);
+
+		Items.pembayarantotal(req.con, resii, function(err3, rows3) {})
+		console.log(resii);
+
+		if(rows.length > 0){
+			// console.log(rows2)	
+			res.render("./public/pembayaran", {
+				title: 'Pembayaran',
+				pembayaran: rows,
+				datauser: rows2,
+				pembayarantotal: rows3,
+				resi:resii
+				// path: '/', 
+				
+
+				});
+
+		}
+				
 
 
-		Items.pembayaran(req.con, req.params.resi, function(err, rows) {
-
-			Items.datauser(req.con, rows[0].usersId, function(err2, rows2) {
-
-				Items.pembayarantotal(req.con, req.params.resi, function(err3, rows3) {
-
-					if(rows.length > 0){
-						// console.log(rows2)	
-						res.render("./public/pembayaran", {
-							title: 'Pembayaran',
-							pembayaran: rows,
-							datauser: rows2,
-							pembayarantotal: rows3,
-							resi:req.params.resi
-							// path: '/', 
-							
-
-						  });
-
-					}
-				})
-
-			})
-
-		})
 
 	},
 

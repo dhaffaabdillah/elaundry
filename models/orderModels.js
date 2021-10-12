@@ -17,7 +17,7 @@ module.exports = {
 	},
 
 	getDetailOrder: async function(con, id, callback){
-		await con.query(`SELECT orders.NamaCustomers, orders.IdOrders, orders.Alamat, orders.NoTelp, orders.Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.IdStatus = orders.Status WHERE orders.Id = ${id}`, callback)
+		await con.query(`SELECT users.NAMALENGKAP as NamaCustomers, orders.IdOrders, users.ALAMAT as Alamat, users.NOMORTELEPON as NoTelp, users.EMAIL as Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.Id = orders.Status JOIN users ON users.id = orders.usersId WHERE orders.Id = ${id}`, callback)
 	},
 
 	getStatusProgress: async function(con, callback){
@@ -25,8 +25,10 @@ module.exports = {
 	},
 
 	create: async function(con, data, callback){
+		
+		console.log(data);
 
-        await con.query(`INSERT INTO orders SET IdOrders =  '${data.resi}', Status = 1, usersId = ${data.userid}`, callback)
+        await con.query(`INSERT INTO orders SET IdOrders = '${data.resi}', Status = 1, usersId = ${data.userid}`, callback)
 
 		// await con.query(`INSERT INTO  orders SET 
 		// 	IdOrders =  'BOD${nanoid()}' ,

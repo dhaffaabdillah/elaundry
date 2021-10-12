@@ -23,7 +23,7 @@ router.post("/", async function (request, response) {
         await request.login(user, function (err) { });
 
         if (request.user.role === "ADMIN") {
-            response.redirect("/admin/");
+            response.redirect("/admin");
         } else {
             response.redirect("/profile/user");
         }
@@ -33,8 +33,8 @@ router.post("/", async function (request, response) {
         });
     }
 });
-router.post("/logout", function (request, response) {
+router.post("/admin/logout", function (request, response) {
     request.logOut();
-    response.redirect("/login");
+    response.redirect("/admin/login");
 });
 module.exports = router

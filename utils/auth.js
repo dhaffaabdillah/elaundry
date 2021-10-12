@@ -35,7 +35,7 @@ module.exports = {
 	          		return next();
 	        	}
 	      	} else {
-	        	response.redirect("/login");
+	        	response.redirect("/admin/login");
 	      	}
     	}
   	}

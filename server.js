@@ -18,6 +18,11 @@ const serviceRoute = require("./controllers/service.route")
 const ordersRoute  = require("./routes/ordersRouter")
 const publicRoute  = require("./routes/publicRouter")
 
+// port server
+app.listen(process.env.SERVER_PORT, function () {
+    console.log("Server udah jalan y 127.0.0.1:" + process.env.SERVER_PORT)
+});
+
 // use modules
 app.use(function(req, res, next) {
     req.con = con
@@ -31,19 +36,14 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.static(__dirname + '/public'))
 
-//public
-app.use("/", publicRoute)
-
 //admin
-app.use("/login", loginRoute)
-app.use("/admin", adminRoute)
-app.use("/profile", profileRoute)
+app.use("/admin/login", loginRoute)
 app.use("/admin/users", adminRoute)
 app.use("/admin/services", serviceRoute)
 app.use("/admin/orders", ordersRoute)
+app.use("/admin/profile", profileRoute)
+app.use("/admin", adminRoute)
 
-// port server
-app.listen(process.env.SERVER_PORT, function () {
-    console.log("Server udah jalan y 127.0.0.1:" + process.env.SERVER_PORT)
-});
+//public
+app.use("/", publicRoute)
 

@@ -37,9 +37,11 @@ module.exports = {
             userid : userid
         }
         
-        orderModels.create(con, omdata, function(err, rows){});
+        con.query(`INSERT INTO orders SET IdOrders = '${omdata.resi}', Status = 1, usersId = ${omdata.userid}`, function(err) {
 
-        Object.keys(data).forEach(key => {
+            console.log(err);
+
+            Object.keys(data).forEach(key => {
 			console.log(data[key], 'asdjkaok');
 
             let itemsdetail;
@@ -69,40 +71,44 @@ module.exports = {
                 con.query(`INSERT INTO orders_log (usersId, ordersId, itemsId, ket, quantity, tprice, status_logId) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
                 [userid, omdata.resi, data[key].itemsId, data[key].ket, data[key].quantity, price, 1], callback);
                 
+                });
+
+                
+                // let itemsdetail;
+
+                // if(items[key] != '' || items[key] != 0){
+                // 	// Satuan
+                // 	if(key.includes('_')){
+                                    
+                // 		let item = key.split('_');
+
+                // 		console.log(item);
+                // 		itemsOrder.push({
+                // 			itemsId : item[0],
+                // 			quantity : items[key],
+                // 			ket : item[1]
+                // 		});
+
+                // 		// console.log(key, items[key], 'satuan');
+
+                // 	} else {
+                // 		// Kiloan
+                // 		itemsOrder.push({
+                // 			itemsId : key,
+                // 			quantity : items[key],
+                // 			ket : 'Kg'
+                // 		});
+                // 	}
+                // }
+
             });
 
-           
-            // let itemsdetail;
+        })
 
-			// if(items[key] != '' || items[key] != 0){
-			// 	// Satuan
-			// 	if(key.includes('_')){
-								
-			// 		let item = key.split('_');
+        
+        console.log(omdata.resi);
 
-			// 		console.log(item);
-			// 		itemsOrder.push({
-			// 			itemsId : item[0],
-			// 			quantity : items[key],
-			// 			ket : item[1]
-			// 		});
-
-			// 		// console.log(key, items[key], 'satuan');
-
-			// 	} else {
-			// 		// Kiloan
-			// 		itemsOrder.push({
-			// 			itemsId : key,
-			// 			quantity : items[key],
-			// 			ket : 'Kg'
-			// 		});
-			// 	}
-			// }
-
-		});
-
-
-        await con.query(`SELECT IdOrders FROM orders WHERE IdOrders = ?`, [omdata.resi], callback);
+        con.query(`SELECT IdOrders FROM orders WHERE IdOrders = ?`, [omdata.resi], callback);
         
 	},
 
