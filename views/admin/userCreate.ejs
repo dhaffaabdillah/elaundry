@@ -1,0 +1,55 @@
+<%- include('../partials/head'); %>
+<body class="">
+    <div class="page-container">
+        <%- include('../partials/sidebar'); %>
+        <div class="page-content">
+        <%- include('../partials/headerNew'); %>
+
+            <!-- main content disini -->
+            <div class="main-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>Add User</h3>
+                        <form method="POST" action="/admin/user-list"> 
+                            <input type="hidden" name="_id">
+                            <div class="form-row">
+                                <label>Username</label>
+                                <input type="text" name="_username" class="form-control" >
+
+                                <label>Email</label>
+                                <input type="email" name="_email" class="form-control" >
+
+                                <label>Role</label>
+                                <small>* Abaikan jika tidak ada perubahan</small>
+                                <select name="_role" class="js-states form-control" id="chooseProgress">
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="USER">User</option>
+                                </select>
+
+                            </div><br>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- end main content -->
+            <%- include('../partials/footer'); %>
+                              
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<%- include('../partials/script'); %>
+<script type="text/javascript">
+$(document).ready(function() {
+    "use strict"
+    // var data = [ { id: 0, text: 'enhancement' }];
+    $('#dtableorders').DataTable()
+    $("#chooseProgress").select2()
+})
+</script>
+</html>

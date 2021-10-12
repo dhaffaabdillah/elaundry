@@ -26,13 +26,10 @@ module.exports = {
     	Order.getById(req.con, req.params.id, function(err, rows) {
       		res.render("admin/ordersEdit", { title: "Edit Orders | ", data: rows[0] })
     	})
-    // 	Order.getStatusProgress(req.con, function(err, rows) {
-  		// 	res.render("admin/ordersEdit", { title: "Edit Orders | ", data2: rows })
-  		// })
   	},
 
   	show: async function(req, res) {
-  		Order.getDetailOrder(req.con, req.params.id, function(err,rows){
+  		Order.getById(req.con, req.params.id, function(err,rows){
   			res.render("admin/ordersDetail", {title: 'Detail Order | ', data: rows[0]})
   		})
   	},

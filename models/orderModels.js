@@ -9,7 +9,8 @@ module.exports = {
 	},
 
 	getById: async function(con, id, callback){
-		await con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
+		// await con.query(`SELECT * FROM orders WHERE Id = ${id}`, callback)
+		await con.query(`SELECT NamaCustomers, IdOrders, Alamat, NoTelp, Email, status_orders.NamaStatus FROM orders JOIN status_orders ON status_orders.IdStatus = orders.Status WHERE Id = ${id}`, callback)
 	},
 
 	getDetailOrder: async function(con, id, callback){

@@ -17,6 +17,7 @@ const profileRoute = require("./controllers/profile.route")
 const serviceRoute = require("./controllers/service.route")
 const ordersRoute  = require("./routes/ordersRouter")
 const publicRoute  = require("./routes/publicRouter")
+const userRoute  = require("./routes/userRouter")
 
 // use modules
 app.use(function(req, res, next) {
@@ -41,6 +42,8 @@ app.use("/profile", profileRoute)
 app.use("/admin/users", adminRoute)
 app.use("/admin/services", serviceRoute)
 app.use("/admin/orders", ordersRoute)
+app.use("/admin/user-list", userRoute)
+
 
 // port server
 app.listen(process.env.SERVER_PORT, function () {
