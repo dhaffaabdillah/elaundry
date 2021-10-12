@@ -121,37 +121,37 @@ module.exports = {
 	},
 
 	pembayaran: async function(req, res){
-		
 
-		let resii = req.params.resi;
-		console.log(resii);
-
-		Items.pembayaran(req.con, resii, function(err, rows) {})
-		console.log(resii);
-
-		Items.datauser(req.con, rows[0].usersId, function(err2, rows2) {})
-		console.log(resii);
-
-		Items.pembayarantotal(req.con, resii, function(err3, rows3) {})
-		console.log(resii);
-
-		if(rows.length > 0){
-			// console.log(rows2)	
-			res.render("./public/pembayaran", {
-				title: 'Pembayaran',
-				pembayaran: rows,
-				datauser: rows2,
-				pembayarantotal: rows3,
-				resi:resii
-				// path: '/', 
-				
-
-				});
-
+		let resii = {
+			resi : req.params.resi.toString()
 		}
-				
+		console.log(resii.resi);
 
+		Items.pembayaran(req.con, resii, function(err, rows) {
 
+			Items.datauser(req.con, rows[0].usersId, function(err2, rows2) {
+
+				Items.pembayarantotal(req.con, resii, function(err3, rows3) {
+
+					if(rows.length > 0){
+						console.log(rows)	
+						res.render("./public/pembayaran", {
+							title: 'Pembayaran',
+							pembayaran: rows,
+							datauser: rows2,
+							pembayarantotal: rows3,
+							resi:resii
+							// path: '/', 
+							
+
+						  });
+
+					}
+				})
+
+			})
+
+		})
 
 	},
 
@@ -173,12 +173,22 @@ module.exports = {
 		})
 	},
 
+	deleteOrderPembayaran: async function(req, res){
+		Items.deleteOrderPembayaran(req.con, req.body, function(err, rows) {})
+	},
+	
 	tracking: async function(req, res){
 		res.render("./public/tracking")
 	},
 
 	tracker: async function(req, res){
-		res.render("./public/tracker")
+		ordersId = req.body.ordersId;
+		Items.tracker(req.con, ordersId, function(err, rows) {
+			console.log(rows);
+			res.render("./public/tracker", {
+				data:rows
+			})
+		})
 	},
 
 	dokumen_sk: async function(req, res){

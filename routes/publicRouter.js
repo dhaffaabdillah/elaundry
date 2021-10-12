@@ -23,10 +23,11 @@ router.post('/pemesanan', publicController.pemesanan);
 router.post('/pelunasan', publicController.pelunasan);
 
 router.get('/tracking', publicController.tracking);
-router.get('/tracking/status', publicController.tracker);
+router.post('/tracking/status/', publicController.tracker);
 
 
 router.get('/pembayaran/:resi', publicController.pembayaran);
+router.post('/deleteOrderPembayaran', publicController.deleteOrderPembayaran);
 
 
 router.get('/dokumen-s&k', publicController.dokumen_sk);

@@ -33,11 +33,11 @@
                             
                                         <!-- profile card start -->
                                         <div class="d-flex align-items-center m-b-20">
-                                            <div class="content w-100 flex-1">
+                                            <div class="content w-100 flex-1" id="<%= resi.resi %>_<%= items.id %>">
                                                 <div class="row d-flex align-items-center">
                                                     <div class="col-6">
                                                         <h6 class=""><%= items.ServiceName %> - <%= items.namaItem %></h6>
-                                                        <span class="">Jumlah <%= items.ket %> <%= items.quantity %></span>
+                                                        <span class=""><%= items.ket %>, Jumlah <%= items.quantity %></span>
                                                     </div>
                                                     <div class="col-1 text-right">
                                                     </div>
@@ -46,7 +46,7 @@
                                                             <span class=""><%= items.tprice %></span>
                                                         </div>
                                                         <div class="col-3">
-                                                            <a href="#" class="f-s-16 text-color-reset link-text-d-n">
+                                                            <a href="#" class="f-s-16 text-color-reset link-text-d-n" onclick="deleteOrder('<%= resi.resi %>_<%= items.id %>')">
                                                                 <i class="fa fa-trash"></i>
                                                             </a>
                                                         </div>
@@ -246,7 +246,7 @@
                                                         <h6 class="">Kartu Kredit atau Debit (Mastercard, Visa, Amex, JPL)</h6>
                                                     </div>
                                                     <div class="col-lg-5 col-sm-12 d-flex flex-row justify-content-end">
-                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2">Belum Tersedia</a>
+                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2" disablled>Belum Tersedia</a>
                                                     </div>
                                                 </div>
                                                 <div class="divider m-b-20 mt-2"></div>
@@ -256,7 +256,7 @@
                                                         <h6 class="">Go-Pay</h6>
                                                     </div>
                                                     <div class="col-lg-5 col-sm-12 d-flex flex-row justify-content-end">
-                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2">Belum Tersedia</a>
+                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2"  disablled>Belum Tersedia</a>
                                                     </div>
                                                 </div>
                                                 <div class="divider m-b-20 mt-2"></div>
@@ -323,6 +323,15 @@
                                             <div class="d-flex align-items-center m-b-20">
                                                 <div class="content w-100 flex-1">
                                                     <div class="row d-flex align-items-center">
+
+                                                        <div class="container row">
+                                                            <div class="col-10">
+                                                                <span class="font-weight-bold">Kode Resi #<%= resi.resi %></span>
+                                                            </div>
+                                                            <!-- <div class="col-4 text-right">
+                                                                <span class=""></span>
+                                                            </div> -->
+                                                        </div>
                                                         
                                                         <div class="container row">
                                                             <div class="col-8">
@@ -379,7 +388,7 @@
                                             <div class="row d-flex align-items-center">
                                                 <div class="col-12">
                                                     <form action="/pelunasan" id="form-total" method="post">
-                                                        <input id="total" type="hidden" name="totalbayar" value="<%- pembayarantotal[0].total+pembayarantotal[0].total*20/100 %>_<%- resi %>">
+                                                        <input id="total" type="hidden" name="totalbayar" value="<%- pembayarantotal[0].total+pembayarantotal[0].total*20/100 %>_<%= resi.resi %>">
                                                     <a href="#" onclick="document.getElementById('form-total').submit();" class="button button-primary-soft transition-3d-hover m-w-100">Selesaikan Pemesanan</a>
                                                     </form>
                                                 </div>
@@ -403,3 +412,38 @@
 
 <%- include('./public-partials/footer'); %>
 <%- include('./public-partials/script'); %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+    function deleteOrder(id){
+        
+        var r = confirm('Yakin untuk menghapus?');
+        if (r == true) {
+
+            var identifier = id.split('_');
+
+            var x = document.getElementById(id).style.display = "none";
+
+            $.ajax({
+                url: "/deleteOrderPembayaran",
+                type: "POST",
+                data: {
+                    'Orders_logId': identifier[0],
+                    'items_logId': identifier[1],
+                    'status_logId': '2',
+                },
+                success: function(data){
+                    alert('Item terhapus !');
+                },
+                error: function(data){
+                    alert('Data gagal terhapus');
+                    document.getElementById(id).style.display = "block";
+                },
+            });
+        }
+       
+    }
+
+</script>

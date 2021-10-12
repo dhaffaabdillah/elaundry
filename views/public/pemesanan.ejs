@@ -39,6 +39,7 @@
 										<button ><h5 class="text-white">Kg</h5></button>
 									</div>
 								<% } else {%>
+									<span class="display-3 d-block m-b-40"><%= items.namaItem %></span>
 									<p class="m-b-40">S: <%= items.hargaS %> M: <%= items.hargaM %> L: <%= items.hargaL %></p>
 									<div class="input-buttons primary">
 										<input type="number" name="<%= items.id %>_S" placeholder="(S) Masukan Jumlah cth: 10" min="0" max="50">
@@ -100,3 +101,4 @@
 
 <%- include('./public-partials/footer'); %>
 <%- include('./public-partials/script'); %>
+
