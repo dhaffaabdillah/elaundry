@@ -44,6 +44,23 @@ module.exports = {
 	    } catch (err) {
 	      	throw err;
 	    }
+  	},
+
+	async publicregist(data) {
+	    try {
+			console.log(data);
+	      	// conn = await pool.getConnection();
+	      	// sql = "SELECT id,username,email,role FROM USERS WHERE username = ?";
+	      	// const rows = await conn.query(sql, username);
+	      	// conn.end();
+	      	// if (rows.length == 1) {
+		    //     return rows[0];
+	      	// } else {
+	        // 	return false;
+	      	// }
+	    } catch (err) {
+	      	throw err;
+	    }
   	}
 
 }

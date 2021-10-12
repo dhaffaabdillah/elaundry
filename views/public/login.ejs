@@ -1,0 +1,47 @@
+<%- include('./public-partials/head'); %>
+<%- include('./public-partials/navbar'); %>
+
+<!-- Page Start -->
+	<section class="m-t-80 h-full">
+
+        <!-- Right Start -->
+		<div class="login-right login-left d-flex align-items-center justify-content-center">
+			<div class="container-fluid">
+				<div class="row d-flex justify-content-center">
+					<div class="col-lg-8 col-md-8">
+						<h1 class="text-primary">Masuk ke Akun</h1>
+						<p class="m-b-40">Silahkan Login atau Masuk untuk melanjutkan pemesanan</p>
+                        <form action="/login" method="post">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-item m-b-30">
+									<label class="lbl" for="form1">Nomor Telepon atau Email</label>
+									<input class="input" type="text" name="credentials" id="form1" placeholder="Nomor Telepon atau email" />
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-item m-b-30">
+									<label class="lbl" for="form2">Password </label> <!-- <a class="pull-right link-small text-capitalize" href="recover-account.html">Forgot Password?</a> -->
+									<input class="input" type="password" name="password" id="form2" placeholder="Password" />
+								</div>
+							</div>
+						</div>
+						<div class="row d-flex align-items-center">
+							<div class="col-8">
+								<span>Belum mempunyai akun? <a href="/daftar">Daftar</a></span>
+							</div>
+							<div class="col-4">
+								<button type="submit" class="button button-primary transition-3d-hover pull-right">Login</button>
+							</div>
+						</div>
+                    </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Right End -->
+	</section>
+	<!-- Page End -->
+
+<%- include('./public-partials/footer'); %>
+<%- include('./public-partials/script'); %>

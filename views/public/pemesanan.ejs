@@ -18,76 +18,50 @@
 		</div>
 	</section>
 	<!-- Pricing End -->
+	<form action="/pemesanan" method="post">
 
 	<section class="m-t-80">
 		<div class="container">
+
 			<div class="row m-b-30">
-				<!-- item start -->
-				<div class="col-lg-4 m-b-30 transition-3d-hover">
-					<div class="box border-box p-25 rounded text-center">
-						<h6 class="text-color-primary m-b-30">Kiloan - Cuci Basah</h6>
-						<span class="display-3 d-block m-b-40">2000/Kg</span>
-						<p class="m-b-40">Curabitur interdum nulla vel ligula ultrices ultricies. Fusce condi mentum dui vitae tempor.</p>
-						<div class="input-buttons primary">
-							<input type="number" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
-							<button ><h5 class="text-white">Kg</h5></button>
-						</div>
-					</div>
-				</div>
-				<!-- item end -->
-
-				<!-- item start -->
-				<div class="col-lg-4 m-b-30 transition-3d-hover">
-					<div class="box border-box p-25 rounded text-center">
-						<h6 class="text-color-success m-b-30">Kiloan - Cuci Kering</h6>
-						<span class="display-3 d-block m-b-40">2500/Kg</span>
-						<p class="m-b-40">Sed ornare massa ligula, at mollis mi accumsan pretium. Quisque eleifend ac velit vel rhoncus.</p>
-						<div class="input-buttons primary">
-							<input type="number" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
-							<button ><h5 class="text-white">Kg</h5></button>
-						</div>
-					</div>
-				</div>
-				<!-- item end -->
-
-				<!-- item start -->
-				<div class="col-lg-4 m-b-30 transition-3d-hover">
-					<div class="box border-box p-25 rounded text-center">
-						<h6 class="text-color-primary m-b-30">Kiloan - Cuci Stetrika</h6>
-						<span class="display-3 d-block m-b-40">2250/Kg</span>
-						<p class="m-b-40">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
-						<div class="input-buttons primary">
-							<input type="number" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
-							<button><h5 class="text-white">Kg</h5></button>
-						</div>
-					</div>
-				</div>
-				<!-- item end -->
-
-				<!-- item start -->
-				<div class="col-lg-4 m-b-30 transition-3d-hover">
-					<div class="box border-box p-25 rounded text-center">
-						<h6 class="text-color-primary m-b-30">Satuan</h6>
-						<span class="display-3 d-block m-b-40">Sprei</span>
-						<p class="m-b-40">S: 7500 M: 12000 L: 17000</p>
-						<div class="input-buttons primary">
-							<input type="number" placeholder="(S) Masukan Jumlah cth: 10" min="0" max="50">
-							<button><h5 class="text-white">Qty</h5></button>
-						</div>
-						<div class="input-buttons primary">
-							<input type="number" placeholder="(M) Masukan Jumlah cth: 10" min="0" max="50">
-							<button><h5 class="text-white">Qty</h5></button>
-						</div>
-						<div class="input-buttons primary">
-							<input type="number" placeholder="(L) Masukan Jumlah cth: 10" min="0" max="50">
-							<button><h5 class="text-white">Qty</h5></button>
-						</div>
-					</div>
-				</div>
-				<!-- item end -->
-
-
 				
+				<% if (data.length > 0) { let i = 0; let b;%>
+					<% for (let items of data) { i++ %>
+						<!-- item start -->
+						<div class="col-lg-4 m-b-30 transition-3d-hover">
+							<div class="box border-box p-25 rounded text-center">
+								<h6 class="<% if (i == 1) { b = "text-color-primary"; i++ } else { b = "text-color-success"; i = 0;}%> <%- b %> m-b-30"><%= items.ServiceName %> - <%= items.namaItem %></h6>
+								<% if (items.serviceId == 27) { %>
+									<span class="display-3 d-block m-b-40"><%= items.hargaKg %>/Kg</span>
+									<p class="m-b-40">Semua Jenis Pakaian</p>
+									<div class="input-buttons primary">
+										<input type="number" name="<%= items.id %>" placeholder="Masukan Jumlah cth: 10 atau 2.5" min="0" max="50">
+										<button ><h5 class="text-white">Kg</h5></button>
+									</div>
+								<% } else {%>
+									<p class="m-b-40">S: <%= items.hargaS %> M: <%= items.hargaM %> L: <%= items.hargaL %></p>
+									<div class="input-buttons primary">
+										<input type="number" name="<%= items.id %>_S" placeholder="(S) Masukan Jumlah cth: 10" min="0" max="50">
+										<button><h5 class="text-white">Qty</h5></button>
+									</div>
+									<div class="input-buttons primary">
+										<input type="number" name="<%= items.id %>_M" placeholder="(M) Masukan Jumlah cth: 10" min="0" max="50">
+										<button><h5 class="text-white">Qty</h5></button>
+									</div>
+									<div class="input-buttons primary">
+										<input type="number" name="<%= items.id %>_L" placeholder="(L) Masukan Jumlah cth: 10" min="0" max="50">
+										<button><h5 class="text-white">Qty</h5></button>
+									</div>
+								<% }%>
+
+							</div>
+						</div>
+						<!-- item end -->
+					<% } %>
+				<% } else { %>
+					<h1>No Products Found!</h1>
+				<% } %>
+
 			</div>
 		</div>
 	</section>
@@ -96,7 +70,7 @@
 		<div class="container">
 			<div class="row text-center ">
 				<div class="d-flex flex-sm-row col-lg-7 col-md-6 col-sm-12">
-					<div class="col-lg-4 col-md-4 col-sm-12 sm-margin-bottom-30 d-flex justify-content-lg-end ">
+					<!-- <div class="col-lg-4 col-md-4 col-sm-12 sm-margin-bottom-30 d-flex justify-content-lg-end ">
 						<div class="count-item">
 							<p class="d-block">Total Harga*</p>
 							<h2 class="d-block m-b-15">17000</h2>
@@ -113,14 +87,16 @@
 							<p class="d-block">Total Satuan</p>
 							<h2 class="d-block m-b-15">5</h2>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm-12 sm-margin-bottom-30 d-flex justify-content-end align-items-center mb-3">
-					<button type="button" class="btn btn-lg btn-outline-primary" onclick="window.open('/pembayaran')">  Lanjutkan Pembayaran  <i class="fa fa-chevron-right"></i></button>
+					<button type="submit" class="btn btn-lg btn-outline-primary">  Lanjutkan Pembayaran  <i class="fa fa-chevron-right"></i></button>
 				</div>
 			</div>
 		</div>
 	</section>
+
+</form>
 
 <%- include('./public-partials/footer'); %>
 <%- include('./public-partials/script'); %>
