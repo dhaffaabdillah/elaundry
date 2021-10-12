@@ -9,6 +9,7 @@ router.get("/", auth.checkAuthentication("ADMIN"), async function (request, resp
   	let userData = await userModel.read(request.user.username);
   	let listData = await servicesModel.listServices();
 	response.render("admin/services", {
+		title: 'Services | ',
     	user: userData,
     	data: listData,
     	type: "ADMIN",
@@ -19,6 +20,7 @@ router.get("/new", auth.checkAuthentication("ADMIN"), async function (request, r
   	let userData = await userModel.read(request.user.username);
   	let listData = await servicesModel.listServices();
 	response.render("admin/addServices", {
+		title: 'New Services | ',
     	user: userData,
     	data: listData,
     	type: "ADMIN",
