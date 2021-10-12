@@ -1,6 +1,10 @@
 const { customAlphabet } = require('nanoid')
 const nanoid = customAlphabet('1234567890', 10)
-const tanggal = new Date()
+const tanggal = new Date();
+
+// const userid = req.session.user;
+		
+
 module.exports = {
 
 	get: async function(con, callback) {
@@ -12,13 +16,16 @@ module.exports = {
 	},
 
 	create: async function(con, data, callback){
-		await con.query(`INSERT INTO  orders SET 
-			IdOrders =  '${nanoid()}' ,
-			NamaCustomers = ' ${data._custName} ',
-			Alamat = ' ${data._address} ',
-			NoTelp = ' ${data._noTel} ',
-			Email = ' ${data._email} '
-			`, callback)
+
+        await con.query(`INSERT INTO orders SET IdOrders =  '${data.resi}', Status = 1, usersId = ${data.userid}`, callback)
+
+		// await con.query(`INSERT INTO  orders SET 
+		// 	IdOrders =  'BOD${nanoid()}' ,
+		// 	NamaCustomers = ' ${data._custName} ',
+		// 	Alamat = ' ${data._address} ',
+		// 	NoTelp = ' ${data._noTel} ',
+		// 	Email = ' ${data._email} '
+		// 	`, callback)
 	},
 
 	update: async function(con, data, id, callback) {

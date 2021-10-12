@@ -28,21 +28,22 @@
                                         <h5 class="m-b-15">Daftar Pemesanan</h5>
                                         <div class="divider m-b-20"></div>
 
-                                        
+                                        <% if (pembayaran.length > 0) { let i = 0; let b;%>
+                                            <% for (let items of pembayaran) { i++ %>
                             
                                         <!-- profile card start -->
                                         <div class="d-flex align-items-center m-b-20">
                                             <div class="content w-100 flex-1">
                                                 <div class="row d-flex align-items-center">
                                                     <div class="col-6">
-                                                        <h6 class="">Kiloan - Cuci Basah</h6>
-                                                        <span class="">Jumlah 5 Kg</span>
+                                                        <h6 class=""><%= items.ServiceName %> - <%= items.namaItem %></h6>
+                                                        <span class="">Jumlah <%= items.ket %> <%= items.quantity %></span>
                                                     </div>
                                                     <div class="col-1 text-right">
                                                     </div>
                                                     <div class="col-5 text-right row">
                                                         <div class="col-9">
-                                                            <span class="">40000</span>
+                                                            <span class=""><%= items.tprice %></span>
                                                         </div>
                                                         <div class="col-3">
                                                             <a href="#" class="f-s-16 text-color-reset link-text-d-n">
@@ -53,6 +54,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            <% } %>
+                                        <% } else { %>
+                                            <h1>No Products Found!</h1>
+                                        <% } %>
                                         <div class="divider m-b-20"></div>
 
                                         <!-- <div class="divider m-b-20"></div> -->
@@ -93,12 +98,15 @@
                                                         <span class="">Hanya tersedia di wilayah Jabodetabek*</span>
                                                     </div>
                                                     <div class="col-lg-5 col-sm-12 text-lg-right d-flex flex-row justify-content-sm-start">
-                                                        <div class="col-8">
+
+                                                        <span class="">Mohon maaf, Layanan ini sedang tidak tersedia</span>
+
+                                                        <!-- <div class="col-8">
                                                             <a href="javascript:;" class="button button-primary-soft transition-3d-hover">Ya, Boleh</a>
                                                         </div>
                                                         <div class="col-4 d-flex align-items-center">
                                                             <a href="javascript:;" class=""><span>Tidak</span></a>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
 
@@ -148,6 +156,7 @@
                                         <h5 class="m-b-15">Data Pelanggan</h5>
                                         <div class="divider m-b-20"></div>
 
+                                        <% if (datauser.length > 0) { let i = 0; let b;%>
                                         
                             
                                         <!-- profile card start -->
@@ -158,13 +167,13 @@
                                                         <div class="col-lg-7 col-sm-12">
                                                             <div class="form-item sm-m-b-30">
                                                                 <label class="lbl" for="form1">Email</label>
-                                                                <input class="input" type="text" id="form1" placeholder="Email" />
+                                                                <input class="input" type="text" id="form1" placeholder="Email" value="<%= datauser[0].EMAIL %>" readonly />
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-5 col-sm-12">
                                                             <div class="form-item sm-m-b-30">
                                                                 <label class="lbl" for="form1">Nomor Telepon</label>
-                                                                <input class="input" type="text" id="form1" placeholder="Nomor Telepon" />
+                                                                <input class="input" type="text" id="form1" placeholder="Nomor Telepon"  value="<%= datauser[0].NOMORTELEPON %>" readonly />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -173,13 +182,13 @@
                                                         <div class="col-lg-7 col-sm-12">
                                                             <div class="form-item sm-m-b-30">
                                                                 <label class="lbl" for="form1">Nama Lengkap</label>
-                                                                <input class="input" type="text" id="form1" placeholder="Nama Lengkap" />
+                                                                <input class="input" type="text" id="form1" placeholder="Nama Lengkap"  value="<%= datauser[0].NAMALENGKAP %>" readonly/>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-5 col-sm-12">
                                                             <div class="form-item sm-m-b-30">
                                                                 <label class="lbl" for="form1">Kode Pos</label>
-                                                                <input class="input" type="text" id="form1" placeholder="Kode Pos" />
+                                                                <input class="input" type="text" id="form1" placeholder="Kode Pos"  value="<%= datauser[0].KODEPOS %>" readonly/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -188,13 +197,17 @@
                                                         <div class="col-lg-12 col-sm-12">
                                                             <div class="form-item sm-m-b-30">
                                                                 <label class="lbl" for="form3">Alamat</label>
-                                                                <textarea class="textarea" id="form3" rows="7" placeholder="Alamat"></textarea>
+                                                                <textarea class="textarea" id="form3" rows="7" placeholder="Alamat" readonly><%= datauser[0].ALAMAT %></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <% } else { %>
+                                            <h1>Gagal Memuat Data</h1>
+                                        <% } %>
                                         <div class="divider m-b-20"></div>
 
                                         <!-- <div class="divider m-b-20"></div> -->
@@ -233,7 +246,7 @@
                                                         <h6 class="">Kartu Kredit atau Debit (Mastercard, Visa, Amex, JPL)</h6>
                                                     </div>
                                                     <div class="col-lg-5 col-sm-12 d-flex flex-row justify-content-end">
-                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2">Pilih</a>
+                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2">Belum Tersedia</a>
                                                     </div>
                                                 </div>
                                                 <div class="divider m-b-20 mt-2"></div>
@@ -243,7 +256,7 @@
                                                         <h6 class="">Go-Pay</h6>
                                                     </div>
                                                     <div class="col-lg-5 col-sm-12 d-flex flex-row justify-content-end">
-                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2">Pilih</a>
+                                                        <a href="javascript:;" class="button button-primary-soft transition-3d-hover mb-2">Belum Tersedia</a>
                                                     </div>
                                                 </div>
                                                 <div class="divider m-b-20 mt-2"></div>
@@ -316,25 +329,25 @@
                                                                 <span class="">Biaya Pemesanan</span>
                                                             </div>
                                                             <div class="col-4 text-right">
-                                                                <span class="">40000</span>
+                                                                <span class=""><%= pembayarantotal[0].total %></span>
                                                             </div>
                                                         </div>
 
-                                                        <div class="container row">
+                                                        <!-- <div class="container row">
                                                             <div class="col-8">
                                                                 <span class="">Layanan Antar Jemput</span>
                                                             </div>
                                                             <div class="col-4 text-right">
                                                                 <span class="">Free</span>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
 
                                                         <div class="container row">
                                                             <div class="col-8">
                                                                 <span class="">Tax (20%)</span>
                                                             </div>
                                                             <div class="col-4 text-right">
-                                                                <span class="">2000</span>
+                                                                <span class=""><%- pembayarantotal[0].total*20/100 %></span>
                                                             </div>
                                                         </div>
 
@@ -344,6 +357,15 @@
                                                             </div>
                                                             <div class="col-4 text-right">
                                                                 <span class="">COD</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="container row">
+                                                            <div class="col-8">
+                                                                <span class="">Total Bayar</span>
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <span class=""><%- pembayarantotal[0].total+pembayarantotal[0].total*20/100 %></span>
                                                             </div>
                                                         </div>
                                                         
@@ -356,7 +378,10 @@
                                 
                                             <div class="row d-flex align-items-center">
                                                 <div class="col-12">
-                                                    <a href="#" class="button button-primary-soft transition-3d-hover m-w-100">Lanjutkan Pembayaran</a>
+                                                    <form action="/pelunasan" id="form-total" method="post">
+                                                        <input id="total" type="hidden" name="totalbayar" value="<%- pembayarantotal[0].total+pembayarantotal[0].total*20/100 %>_<%- resi %>">
+                                                    <a href="#" onclick="document.getElementById('form-total').submit();" class="button button-primary-soft transition-3d-hover m-w-100">Selesaikan Pemesanan</a>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
