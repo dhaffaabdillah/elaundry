@@ -1,0 +1,61 @@
+<%- include('../partials/head'); %>
+<body class="">
+    <div class="page-container">
+        <%- include('../partials/sidebar'); %>
+        <div class="page-content">
+        <%- include('../partials/headerNew'); %>
+        
+
+            <!-- main content disini -->
+            <div class="main-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>Orders Log</h3>
+                        <a href="/admin/orders/orders-log/create" class="btn btn-primary">Add</a>
+                        <table id="dtableorders" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Nama Customer</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i = 0; i < data.length; i++){ %>
+                                <tr>
+                                    <td><%= data[i].ordersId %></td>
+                                    <td><%= data[i].NamaCustomers %></td>
+                                    <td><%= data[i].NamaStatus %></td>
+                                    <td>
+                                        <a href="/admin/orders/orders-log/<%= data[i].id %>/edit" class="btn btn-success">Edit</a>
+                                        
+
+                                    </td>
+                                </tr>
+                                <%} %>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- end main content -->
+            <%- include('../partials/footer'); %>
+                              
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<%- include('../partials/script'); %>
+<script type="text/javascript">
+$(document).ready(function() {
+    "use strict"
+    $('#dtableorders').DataTable()
+})
+</script>
+</html>

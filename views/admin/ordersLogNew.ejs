@@ -1,0 +1,57 @@
+<%- include('../partials/head'); %>
+<body class="">
+    <div class="page-container">
+        <%- include('../partials/sidebar'); %>
+        <div class="page-content">
+        <%- include('../partials/headerNew'); %>
+
+            <!-- main content disini -->
+            <div class="main-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>Add Log Orders</h3>
+                        <form method="POST" action="/admin/orders/orders-log/new"> 
+                            <input type="hidden" name="_id">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>    
+
+                                    <select name="_userId" class="js-states form-control" id="chooseProgress">
+                                        <% for(var i = 0; i < data.length; i++){ %>
+                                            <option value="<%= data[i].userId %>"><%= data[i].NamaCustomers %></option>
+                                        <% } %>
+                                    </select>
+                                    <input type="text" name="_custName" class="form-control" value="" disabled>
+                                </div>
+                                
+
+
+
+                            </div><br>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- end main content -->
+            <%- include('../partials/footer'); %>
+                              
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<%- include('../partials/script'); %>
+<script type="text/javascript">
+$(document).ready(function() {
+    "use strict"
+    // var data = [ { id: 0, text: 'enhancement' }];
+    $('#dtableorders').DataTable()
+    $("#chooseProgress").select2()
+})
+</script>
+</html>
