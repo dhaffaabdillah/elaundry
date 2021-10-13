@@ -18,7 +18,7 @@
 							<i class="fa fa-location-arrow f-s-22 text-color-primary"></i>
 						</div>
 						<h6 class="m-b-10">Laundry Diterima</h6>
-						<span>Tercatat : </span>
+						<span>Tercatat : <%= data[0].timestamp %></span>
 					</div>
 				</div>
 				<!-- item end -->
@@ -73,7 +73,7 @@
                         <div class="p-50">
 
                             <h5 class="m-b-15 font-weight-bold">Detail Pemesanan</h5>
-                            <!-- <div class="divider m-b-20"></div> -->
+                            <div class="divider m-b-20"></div>
 
                             
                 
@@ -139,7 +139,7 @@
                             </div>
 
 							<h5 class="m-b-15 font-weight-bold">Data Pelanggan</h5>
-                            <!-- <div class="divider m-b-20"></div> -->
+                            <div class="divider m-b-20"></div>
 
                             
                 
@@ -215,6 +215,39 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <h5 class="m-b-15 font-weight-bold">Log Pemesanan</h5>
+                            <div class="divider m-b-20"></div>
+
+                            
+                
+                            <!-- profile card start -->
+                            <div class="d-flex align-items-center m-b-20">
+                                <div class="content w-100 flex-1">
+
+                                    <% if (itemlogs.length > 0) { let i = 0; let b;%>
+                                        <% for (let item of itemlogs) { i++ %>
+                                    
+                                            <div class="row d-flex align-items-center m-b-10">
+                                                <div class="col-6">
+                                                    <h6 class=" font-weight-bold"><%- i %>. <%= item.NamaItem %>, <%= item.ket %></h6>
+                                                    <span class="">Jumlah <%= item.quantity %>, Harga <%= item.tprice %></span>
+                                                </div>
+                                                <div class="col-1 text-right">
+                                                </div>
+                                                <div class="col-5 text-right row">
+                                                    <div class="col-9">
+                                                        <h6 class=" font-weight-bold">Status <%= item.NamaStatus %></h6>
+                                                        <span class="">Tercetat pada <%= item.timestamp %></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    <% } else { %>
+                                        <h1>No Products Found!</h1>
+                                    <% } %>
                                 </div>
                             </div>
 							

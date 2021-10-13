@@ -1,26 +1,54 @@
-const Items = require('../models/publicModels')
+const Items = require('../models/publicModels');
+const OM = require('../models/orderModels');
+
+function logcheck(status){
+	if(!status || status == undefined){
+		return "/login"
+	}else{
+		return "/logout"
+	}
+}
 
 module.exports = {
 	
 	index: async function(req, res){
-		res.render("./public/index")
+
+		let cl = logcheck(req.session.isLoggedIn)
+
+		res.render("./public/index",{
+			cl:cl
+		})
 	},
 
 	login: async function(req, res){
-		res.render("./public/login")
+
+		let cl = logcheck(req.session.isLoggedIn)
+
+		res.render("./public/login",{
+			cl:cl
+		})
 	},
 
 	daftar: async function(req, res){
-		res.render("./public/daftar")
+
+		let cl = logcheck(req.session.isLoggedIn)
+
+		res.render("./public/daftar",{
+			cl:cl
+		})
 	},
 
 	pemesanan_kiloan: async function(req, res){
+
+		let cl = logcheck(req.session.isLoggedIn)
+
 		Items.getAll(req.con, 27, function(err, rows) {
 			console.log(rows);
             if(rows.length > 0){
 				res.render("./public/pemesanan", {
 					title: 'Kiloan',	
 					data:rows,
+					cl:cl
 					// path: '/',
 				  });
             }
@@ -28,6 +56,9 @@ module.exports = {
 	},
 
 	pemesanan_satuan: async function(req, res){
+
+		let cl = logcheck(req.session.isLoggedIn)
+
 		Items.getAll(req.con, 28, function(err, rows) {
 			console.log(rows);
 
@@ -35,6 +66,7 @@ module.exports = {
 				res.render("./public/pemesanan", {
 					title: 'Satuan',	
 					data:rows,
+					cl:cl
 					// path: '/',
 				  });
             }
@@ -42,6 +74,9 @@ module.exports = {
 	},
 
 	pemesanan_gabungan: async function(req, res){
+
+		let cl = logcheck(req.session.isLoggedIn)
+		
 		Items.getAll(req.con, '', function(err, rows) {
 			console.log(rows);
 
@@ -49,6 +84,7 @@ module.exports = {
 				res.render("./public/pemesanan", {
 					title: 'Gabungan',	
 					data:rows,
+					cl:cl
 					// path: '/',
 				  });
             }
@@ -122,6 +158,8 @@ module.exports = {
 
 	pembayaran: async function(req, res){
 
+		let cl = logcheck(req.session.isLoggedIn)
+
 		let resii = {
 			resi : req.params.resi.toString()
 		}
@@ -146,7 +184,8 @@ module.exports = {
 								tax: tax,
 								wtax: wtax
 							},
-							resi:resii
+							resi:resii,
+							cl:cl
 							// path: '/', 
 
 						  });
@@ -163,6 +202,7 @@ module.exports = {
 	pelunasan: async function(req, res){
 		let key = req.body;
 		Items.pembayaran(req.con, key, function(err, rows1) {
+			console.log(rows1, 'sjasja');
 			Items.pembayarantotal(req.con, key, function(err, rows2) {
 				Items.pelunasan(req.con, rows1, rows2, key, function(err, rows3) {
 					res.redirect("/");
@@ -188,30 +228,51 @@ module.exports = {
 	},
 	
 	tracking: async function(req, res){
-		res.render("./public/tracking")
-	},
 
-	tracker: async function(req, res){
-		ordersId = req.body.ordersId;
-		Items.tracker(req.con, ordersId, function(err, rows) {
-			console.log(rows);
-			res.render("./public/tracker", {
-				data:rows
-			})
+		let cl = logcheck(req.session.isLoggedIn)
+
+		res.render("./public/tracking",{
+			cl:cl
 		})
 	},
 
+	tracker: async function(req, res){
+
+		let cl = logcheck(req.session.isLoggedIn)
+
+		ordersId = req.body.ordersId;
+
+		OM.getLogResi(req.con, ordersId, function(err, rows1) {
+			Items.tracker(req.con, ordersId, function(err, rows2) {
+				console.log(rows1, rows2);
+				res.render("./public/tracker", {
+					data:rows2,
+					itemlogs:rows1,
+					cl:cl
+				})
+			})
+	  	})
+	},
+
 	dokumen_sk: async function(req, res){
+
+		let cl = logcheck(req.session.isLoggedIn)
+
 		res.render("./public/s&k", {
 			title: 'Syarat dan Ketentuan',
+			cl:cl
 			// data:data,
 			// path: '/',
 		  });
 	},
 
 	dokumen_faq: async function(req, res){
+
+		let cl = logcheck(req.session.isLoggedIn)
+
 		res.render("./public/faq", {
 			title: 'FAQ',
+			cl:cl
 			// data:data,
 			// path: '/',
 		  });

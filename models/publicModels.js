@@ -104,30 +104,18 @@ module.exports = {
         Object.keys(data1).forEach(key => {
             console.log(data1[key], 'asdjkaok');
     
-                con.query(`SELECT * FROM items WHERE items.id = ${data1[key].itemsId}`, function(err, rows){
-                
-                    // let price = 0;
-        
-                    con.query(`INSERT INTO orders_log (usersId, ordersId, itemsId, ket, quantity, tprice, status_logId) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
-                    [data1[key].usersId, data3.resi, data1[key].itemsId, data1[key].ket, data1[key].quantity, data1[key].tprice, 2]);
+            con.query(`SELECT * FROM items WHERE items.id = ${data1[key].itemsId}`, function(err, rows){
+            
+                // let price = 0;
     
-                })
+                con.query(`INSERT INTO orders_log (usersId, ordersId, itemsId, ket, quantity, tprice, status_logId) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
+                [data1[key].usersId, data3.resi, data1[key].itemsId, data1[key].ket, data1[key].quantity, data1[key].tprice, 2]);
+
+            })
                 
-            });
+        });
 
-        // con.query(`SELECT SUM(tprice) as total FROM orders_log WHERE orders_log.OrdersId = '${data.resi}' AND orders_log.status_logId = 1`, function(err, rows){
-        //     console.log(rows[0].total);
-        //     wtax += parseInt(rows[0].total) + (parseInt(rows[0].total) * 20 / 100);
-        // })
-        console.log(wtax,2);
-
-        // con.query(`INSERT INTO orders_log (usersId, ordersId, itemsId, ket, quantity, tprice, status_logId) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
-        // [userid, data.resi, data[key].itemsId, data[key].ket, data[key].quantity, price, 1]);
-
-        con.query(`UPDATE orders SET totalbayar = "${wtax}"", metodeBayarId = 1, Status = 2 WHERE IdOrders = "${data2.resi}" `, callback)
-        console.log(wtax,4);
-
-
+        con.query(`UPDATE orders SET totalbayar = ${wtax}, metodeBayarId = 1, Status = 2 WHERE IdOrders = "${data3.resi}" `, callback)
 
 	},
 
@@ -143,23 +131,23 @@ module.exports = {
 
                 let price = 0;
     
-                switch(row[key].ket) {
-                    case "S":
-                        price += row[key].quantity*row[key].hargaS;
-                        break;
-                    case "M":
-                        price += row[key].quantity*row[key].hargaM;
-                        break;
-                    case "L":
-                        price += row[key].quantity*row[key].hargaL;
-                        break;
-                    case "Kg":
-                        price += row[key].quantity*row[key].hargaKg;
-                        break;
-                    }
+                // switch(row[key].ket) {
+                //     case "S":
+                //         price += row[key].quantity*row[key].hargaS;
+                //         break;
+                //     case "M":
+                //         price += row[key].quantity*row[key].hargaM;
+                //         break;
+                //     case "L":
+                //         price += row[key].quantity*row[key].hargaL;
+                //         break;
+                //     case "Kg":
+                //         price += row[key].quantity*row[key].hargaKg;
+                //         break;
+                //     }
 
                 con.query(`INSERT INTO orders_log (usersId, ordersId, itemsId, ket, quantity, tprice, status_logId) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
-                [row[key].usersId, resi.resi, row[key].itemsId, row[key].ket, row[key].quantity, price, 2]);
+                [row[key].usersId, resi.resi, row[key].itemsId, row[key].ket, row[key].quantity,  row[key].tprice, 2]);
            
             })
 

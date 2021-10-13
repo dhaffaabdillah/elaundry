@@ -10,6 +10,7 @@ router.get('/index', publicController.index);
 
 router.get('/login', publicController.login);
 router.get('/daftar', publicController.daftar);
+router.get('/logout', publicLoginController.logout);
 
 router.post('/daftar', publicLoginController.daftarbaru);
 router.post('/login', publicLoginController.loginakun)

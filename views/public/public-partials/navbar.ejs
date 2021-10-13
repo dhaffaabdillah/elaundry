@@ -177,7 +177,11 @@
 								</li>
 								
 								<li class="menu-item d-none d-lg-block">
-									<a class="nav-button transition-3d-hover" href="/login">Masuk / Daftar</a>
+									<% if(cl == '/login'){ %>
+										<a class="nav-button transition-3d-hover" href="<%- cl %>">Masuk / Daftar</a>
+									<% } else { %>
+										<a class="nav-button transition-3d-hover" href="<%- cl %>">Logout</a>
+									<% }%>
 								</li>
 							</ul>
 						</nav>

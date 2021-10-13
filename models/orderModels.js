@@ -51,6 +51,11 @@ module.exports = {
 		await con.query(`SELECT users.NAMALENGKAP as NamaCustomers, users.ID AS userId, status.status_log AS NamaStatus, log.id as id, log.ordersId, items.NamaItem, log.ket, log.quantity, log.tprice  FROM orders_log AS log LEFT JOIN items ON items.id = log.itemsId LEFT JOIN status_log AS status ON status.Id = log.status_logId JOIN users ON users.id = log.usersId ORDER BY ordersId ASC, status_logId`, callback)		
 	},
 
+    getLogResi: async function (con, resi, callback) {
+        console.log(resi);
+		await con.query(`SELECT users.NAMALENGKAP as NamaCustomers, users.ID AS userId, status.status_log AS NamaStatus, log.id as id, log.ordersId, items.NamaItem, log.ket, log.quantity, log.timestamp, log.tprice  FROM orders_log AS log LEFT JOIN items ON items.id = log.itemsId LEFT JOIN status_log AS status ON status.Id = log.status_logId JOIN users ON users.id = log.usersId WHERE log.ordersId = "${resi}" ORDER BY ordersId ASC, status_logId`, callback)		
+	},
+
 	createLog: async function(con, data, callback){
 		await con.query(`INSERT INTO  orders_log SET 
 			ordersId =  '${nanoid()}' ,

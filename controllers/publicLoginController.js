@@ -42,8 +42,10 @@ module.exports = {
         }
 
         publicAuth.checklogin(req.con, type, req.body, function(err, rows) {
+            
+            console.log(rows);
 
-            if(rows.length>0){
+            if(rows.length>0 || rows == undefined){
                 // res.redirect('/');
                 req.session.isLoggedIn = true;
                 req.session.user = rows[0].ID;
@@ -60,5 +62,12 @@ module.exports = {
         
 		// res.render("./public/daftarbaru")
 	},
+
+    logout: async function(req, res){
+        req.session.destroy(err => {
+            console.log(err);
+            res.redirect('/');
+          });
+    }
 
 }
