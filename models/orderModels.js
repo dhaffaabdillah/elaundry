@@ -128,40 +128,9 @@ module.exports = {
                 
                 });
 
-                
-                // let itemsdetail;
-
-                // if(items[key] != '' || items[key] != 0){
-                // 	// Satuan
-                // 	if(key.includes('_')){
-                                    
-                // 		let item = key.split('_');
-
-                // 		console.log(item);
-                // 		itemsOrder.push({
-                // 			itemsId : item[0],
-                // 			quantity : items[key],
-                // 			ket : item[1]
-                // 		});
-
-                // 		// console.log(key, items[key], 'satuan');
-
-                // 	} else {
-                // 		// Kiloan
-                // 		itemsOrder.push({
-                // 			itemsId : key,
-                // 			quantity : items[key],
-                // 			ket : 'Kg'
-                // 		});
-                // 	}
-                // }
-
             });
 
         })
-
-        
-        console.log(omdata.resi);
 
         con.query(`SELECT IdOrders FROM orders WHERE IdOrders = ?`, [omdata.resi], callback);
         
