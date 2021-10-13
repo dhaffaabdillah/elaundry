@@ -10,8 +10,10 @@
 					<h1 class="m-b-10">Tracking Pemesanan</h1>
 					<p class="m-b-30">Sialhkan Masukkan Nomor Resi Pemesanan</p>
 					<div class="input-buttons primary">
-						<input type="text" placeholder="cth: 343xxxxx">
-						<button><i class="fa fa-search"></i></button>
+						<form action="/tracking/status/" method="post">
+							<input type="text" name="ordersId" placeholder="cth: 343xxxxx">
+							<button type="submit"><i class="fa fa-search"></i></button>
+						</form>
 					</div>
 				</div>
 			</div>

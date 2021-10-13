@@ -70,9 +70,9 @@
                 <!-- item start -->
                 <div class="col-lg-12 col-md-12 m-b-30">
                     <div class="box border-box overflow-hidden rounded">
-                        <div class="p-25">
+                        <div class="p-50">
 
-                            <h5 class="m-b-15">Detail Pemesanan</h5>
+                            <h5 class="m-b-15 font-weight-bold">Detail Pemesanan</h5>
                             <!-- <div class="divider m-b-20"></div> -->
 
                             
@@ -80,21 +80,144 @@
                             <!-- profile card start -->
                             <div class="d-flex align-items-center m-b-20">
                                 <div class="content w-100 flex-1">
-                                    <div class="row d-flex align-items-center">
+                                    <div class="row d-flex align-items-center m-b-10">
                                         <div class="col-6">
-                                            <h6 class="">Nomor Resi</h6>
+                                            <h6 class=" font-weight-bold">Nomor Resi</h6>
                                             <!-- <span class="">Jumlah 5 Kg</span> -->
                                         </div>
                                         <div class="col-1 text-right">
                                         </div>
                                         <div class="col-5 text-right row">
                                             <div class="col-9">
-                                                <h6 class="">#363xxxxx</h6>
+                                                <h6 class=" font-weight-bold">#<%= data[0].IdOrders %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Status</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].NamaStatus %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Total Harga</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].totalbayar %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Waktu Awal Pemesanan</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].timestamp %></h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+							<h5 class="m-b-15 font-weight-bold">Data Pelanggan</h5>
+                            <!-- <div class="divider m-b-20"></div> -->
+
+                            
+                
+                            <!-- profile card start -->
+                            <div class="d-flex align-items-center m-b-20">
+                                <div class="content w-100 flex-1">
+                                    <div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class=" font-weight-bold">Nama Lengkap</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=" font-weight-bold"><%= data[0].NAMALENGKAP %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Email</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].EMAIL %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Nomor Telepon</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].NOMORTELEPON %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Kode Pos</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].KODEPOS %></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+									<div class="row d-flex align-items-center m-b-10">
+                                        <div class="col-6">
+                                            <h6 class="">Alamat</h6>
+                                            <!-- <span class="">Jumlah 5 Kg</span> -->
+                                        </div>
+                                        <div class="col-1 text-right">
+                                        </div>
+                                        <div class="col-5 text-right row">
+                                            <div class="col-9">
+                                                <h6 class=""><%= data[0].ALAMAT%></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							
                             <!-- <div class="divider m-b-20"></div> -->
 
                             <!-- <div class="divider m-b-20"></div> -->
