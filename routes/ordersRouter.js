@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const auth = require('../utils/auth')
 const ordersController = require('../controllers/ordersController')
+const orderLog = require('../controllers/orderLogsController')
 
 router.get('/', auth.checkAuthentication("ADMIN"), ordersController.index)
 router.get("/create", auth.checkAuthentication("ADMIN"), ordersController.create)
@@ -10,4 +11,10 @@ router.get("/:id/edit",auth.checkAuthentication("ADMIN"),  ordersController.edit
 router.get("/:id/detail",auth.checkAuthentication("ADMIN"),  ordersController.show)
 router.put("/update/:id",auth.checkAuthentication("ADMIN"),  ordersController.update)
 router.delete("/delete/:id",auth.checkAuthentication("ADMIN"),  ordersController.destroy)
+
+router.get("/orders-log",auth.checkAuthentication("ADMIN"), orderLog.index)
+router.get("/orders-log/create", auth.checkAuthentication("ADMIN"), orderLog.create)
+router.post("/orders-log",auth.checkAuthentication("ADMIN"), orderLog.store)
+router.get("/orders-log/:id/edit",auth.checkAuthentication("ADMIN"), orderLog.edit)
+router.put("/orders-log/update/:id",auth.checkAuthentication("ADMIN"),  orderLog.update)
 module.exports = router

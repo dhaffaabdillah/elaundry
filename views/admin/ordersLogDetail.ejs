@@ -1,0 +1,102 @@
+<%- include('../partials/head'); %>
+<body class="">
+    <div class="page-container">
+        <%- include('../partials/sidebar'); %>
+        <div class="page-content">
+        <%- include('../partials/headerNew'); %>
+
+            <!-- main content disini -->
+            <div class="main-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>Edit Log Orders</h3>
+                        <form method="POST" action="/admin/orders/orders-log/update/<%= data.id %>?_method=PUT"> 
+                            <input type="hidden" name="_id">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label>Nama Customer</label>    
+                                    <input type="text" name="_custName" class="form-control" value="<%= data.NamaCustomers %>" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>No Telp</label>    
+                                    <input type="text" name="_custName" class="form-control" value="<%= data.NoTelp %>" disabled>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Email</label>    
+                                    <input type="text" name="_custName" class="form-control" value="<%= data.Email %>" disabled>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Progress</label>
+                                    <select name="_orderLogProgress" class="js-states form-control" id="chooseProgress">
+                                        <option value="1">Dikeranjang</option>
+                                        <option value="2">Terorder</option>
+                                        <option value="3">Dalam Antrian</option>
+                                        <option value="4">Proses Pencucian</option>
+                                        <option value="5">Proses Pengeringan</option>
+                                        <option value="6">Selesai</option>
+                                        <option value="7">Dihapus</option>
+                                        <option value="8">Rusak</option>
+                                        <option value="9">Lainnya</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Status Terakhir</label>
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.NamaStatus %>" disabled>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Alamat</label>    
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.Alamat %>" disabled>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Nama Item</label>    
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.NamaItem %>" disabled>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label>Quantity</label>    
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.quantity %>" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Ket</label>    
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.ket %>" disabled>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Total Price</label>    
+                                    <input type="text" name="_custAddress" class="form-control" value="<%= data.tprice %>" disabled>
+                                </div>
+
+
+
+                            </div><br>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- end main content -->
+            <%- include('../partials/footer'); %>
+                              
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<%- include('../partials/script'); %>
+<script type="text/javascript">
+$(document).ready(function() {
+    "use strict"
+    // var data = [ { id: 0, text: 'enhancement' }];
+    $('#dtableorders').DataTable()
+    $("#chooseProgress").select2()
+})
+</script>
+</html>
