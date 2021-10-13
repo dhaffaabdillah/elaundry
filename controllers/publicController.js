@@ -128,21 +128,26 @@ module.exports = {
 		console.log(resii.resi);
 
 		Items.pembayaran(req.con, resii, function(err, rows) {
-
 			Items.datauser(req.con, rows[0].usersId, function(err2, rows2) {
 
 				Items.pembayarantotal(req.con, resii, function(err3, rows3) {
 
 					if(rows.length > 0){
-						console.log(rows)	
+						console.log(rows3[0].total);
+						let tax = parseInt(rows3[0].total) * 20 / 100;
+						let wtax = parseInt(rows3[0].total) + (parseInt(rows3[0].total) * 20 / 100);
+
 						res.render("./public/pembayaran", {
 							title: 'Pembayaran',
 							pembayaran: rows,
 							datauser: rows2,
-							pembayarantotal: rows3,
+							pembayarantotal: {
+								total: rows3[0].total,
+								tax: tax,
+								wtax: wtax
+							},
 							resi:resii
 							// path: '/', 
-							
 
 						  });
 
@@ -156,25 +161,30 @@ module.exports = {
 	},
 
 	pelunasan: async function(req, res){
-
-		let bon = [];
-
-		let key = req.body.totalbayar;
-
-		let item = key.split('_');
-
-		bon.push({
-			totalbayar : item[0],
-			resi : item[1]
+		let key = req.body;
+		Items.pembayaran(req.con, key, function(err, rows1) {
+			Items.pembayarantotal(req.con, key, function(err, rows2) {
+				Items.pelunasan(req.con, rows1, rows2, key, function(err, rows3) {
+					res.redirect("/");
+				});
+			});
 		});
-
-		Items.pelunasan(req.con, bon, function(err, rows) {
-			res.redirect("/")
-		})
 	},
 
 	deleteOrderPembayaran: async function(req, res){
-		Items.deleteOrderPembayaran(req.con, req.body, function(err, rows) {})
+		Items.deleteOrderPembayaran(req.con, req.body, function(err, rows) {
+			console.log(rows)
+			let tax = parseInt(rows[0].total) * 20 / 100;
+			let wtax = parseInt(rows[0].total) + (parseInt(rows[0].total) * 20 / 100);
+
+			res.status(200).send({
+				pembayarantotal: {
+					total: rows[0].total,
+					tax: tax,
+					wtax: wtax
+				}
+			});
+		})
 	},
 	
 	tracking: async function(req, res){

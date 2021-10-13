@@ -338,7 +338,7 @@
                                                                 <span class="">Biaya Pemesanan</span>
                                                             </div>
                                                             <div class="col-4 text-right">
-                                                                <span class=""><%= pembayarantotal[0].total %></span>
+                                                                <span class="" id="total"><%= pembayarantotal.total %></span>
                                                             </div>
                                                         </div>
 
@@ -356,7 +356,7 @@
                                                                 <span class="">Tax (20%)</span>
                                                             </div>
                                                             <div class="col-4 text-right">
-                                                                <span class=""><%- pembayarantotal[0].total*20/100 %></span>
+                                                                <span class="" id="tax"><%- pembayarantotal.tax %></span>
                                                             </div>
                                                         </div>
 
@@ -365,7 +365,7 @@
                                                                 <span class="">Metode Pembayaran</span>
                                                             </div>
                                                             <div class="col-4 text-right">
-                                                                <span class="">COD</span>
+                                                                <span class="" id="metodebayar">COD</span>
                                                             </div>
                                                         </div>
 
@@ -374,7 +374,7 @@
                                                                 <span class="">Total Bayar</span>
                                                             </div>
                                                             <div class="col-4 text-right">
-                                                                <span class=""><%- pembayarantotal[0].total+pembayarantotal[0].total*20/100 %></span>
+                                                                <span class="" id="wtax"><%- pembayarantotal.wtax %></span>
                                                             </div>
                                                         </div>
                                                         
@@ -388,7 +388,8 @@
                                             <div class="row d-flex align-items-center">
                                                 <div class="col-12">
                                                     <form action="/pelunasan" id="form-total" method="post">
-                                                        <input id="total" type="hidden" name="totalbayar" value="<%- pembayarantotal[0].total+pembayarantotal[0].total*20/100 %>_<%= resi.resi %>">
+                                                        <input id="total" type="hidden" name="resi" value="<%= resi.resi %>">
+                                                        <input id="total" type="hidden" name="mbayar" value="1">
                                                     <a href="#" onclick="document.getElementById('form-total').submit();" class="button button-primary-soft transition-3d-hover m-w-100">Selesaikan Pemesanan</a>
                                                     </form>
                                                 </div>
@@ -435,6 +436,14 @@
                     'status_logId': '2',
                 },
                 success: function(data){
+                    console.log(data);
+
+                    let datas = data.pembayarantotal;
+
+                    document.getElementById("total").innerHTML = datas.total;
+                    document.getElementById("tax").innerHTML = datas.tax;
+                    document.getElementById("wtax").innerHTML = datas.wtax;
+
                     alert('Item terhapus !');
                 },
                 error: function(data){
