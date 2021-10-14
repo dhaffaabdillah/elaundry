@@ -244,7 +244,7 @@ module.exports = {
 
 		OM.getLogResi(req.con, ordersId, function(err, rows1) {
 			Items.tracker(req.con, ordersId, function(err, rows2) {
-				console.log(rows1, rows2);
+				// console.log(rows1, rows2);
 				res.render("./public/tracker", {
 					data:rows2,
 					itemlogs:rows1,
