@@ -41,13 +41,13 @@ module.exports = {
 
 
         Object.keys(data).forEach(key => {
-        console.log(data[key], 'asdjkaok');
+        // console.log(data[key], 'asdjkaok');
 
             let itemsdetail;
 
             con.query(`SELECT * FROM items WHERE items.id = ${data[key].itemsId}`, function(err, rows){
             
-                console.log(rows, 'sioaia');
+                // console.log(rows, 'sioaia');
                 itemsdetail = rows[0] 
     
                 let price = 0;
@@ -81,12 +81,12 @@ module.exports = {
 	},
 
 	pembayaran: async function(con, data, callback){
-        console.log(data);
+        // console.log(data);
         await con.query(`SELECT services.ServiceName, items.namaItem, orders_log.quantity, orders_log.ket, orders_log.itemsId, orders_log.tprice, orders_log.usersId, orders_log.id FROM orders_log INNER JOIN items ON items.id = orders_log.itemsId INNER JOIN services ON services.id = items.serviceId WHERE orders_log.OrdersId = ? AND orders_log.status_logId = 1`, [data.resi], callback);
 	},
 
     pembayarantotal: function(con, data, callback){
-        console.log(data,'www');
+        // console.log(data,'www');
         con.query(`SELECT SUM(tprice) as total FROM orders_log WHERE orders_log.OrdersId = ? AND orders_log.status_logId = 1`, [data.resi], callback);
 	},
 
@@ -99,10 +99,10 @@ module.exports = {
         let wtax;
         wtax = parseInt(data2[0].total) + (parseInt(data2[0].total) * 20 / 100);
 
-        console.log(data1, data2, data3)
+        // console.log(data1, data2, data3)
 
         Object.keys(data1).forEach(key => {
-            console.log(data1[key], 'asdjkaok');
+            // console.log(data1[key], 'asdjkaok');
     
             con.query(`SELECT * FROM items WHERE items.id = ${data1[key].itemsId}`, function(err, rows){
             
@@ -120,7 +120,7 @@ module.exports = {
 	},
 
 	deleteOrderPembayaran: async function(con, data, callback) {
-        console.log(data.Orders_logId);
+        // console.log(data.Orders_logId);
         let resi = {
             resi:data.Orders_logId
         }
@@ -152,8 +152,8 @@ module.exports = {
             })
 
         })
-        await con.query(`UPDATE orders_log SET status_logId = '${data.status_logId}' WHERE ordersId = '${data.Orders_logId}' AND id = '${data.items_logId}' `, function (err, ro){
-            console.log(ro);
+        await con.query(`UPDATE orders_log SET status_logId = '${data.status_logId}' WHERE ordersId = '${data.Orders_logId}' AND id = '${data.items_logId}' `, function (err){
+            // console.log(err);
         })
         await this.pembayarantotal(con, resi, callback);
 

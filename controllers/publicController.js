@@ -43,7 +43,7 @@ module.exports = {
 		let cl = logcheck(req.session.isLoggedIn)
 
 		Items.getAll(req.con, 27, function(err, rows) {
-			console.log(rows);
+			// console.log(rows);
             if(rows.length > 0){
 				res.render("./public/pemesanan", {
 					title: 'Kiloan',	
@@ -60,7 +60,7 @@ module.exports = {
 		let cl = logcheck(req.session.isLoggedIn)
 
 		Items.getAll(req.con, 28, function(err, rows) {
-			console.log(rows);
+			// console.log(rows);
 
             if(rows.length > 0){
 				res.render("./public/pemesanan", {
@@ -78,7 +78,7 @@ module.exports = {
 		let cl = logcheck(req.session.isLoggedIn)
 		
 		Items.getAll(req.con, '', function(err, rows) {
-			console.log(rows);
+			// console.log(rows);
 
             if(rows.length > 0){
 				res.render("./public/pemesanan", {
@@ -106,7 +106,7 @@ module.exports = {
 								
 					let item = key.split('_');
 
-					console.log(item);
+					// console.log(item);
 					itemsOrder.push({
 						itemsId : item[0],
 						quantity : items[key],
@@ -126,7 +126,7 @@ module.exports = {
 
 		});
 
-		console.log(req.session.isLoggedIn);
+		// console.log(req.session.isLoggedIn);
 
 		if(req.session.isLoggedIn == true || req.session.isLoggedIn != undefined){
 			let user = req.session.user;
@@ -134,11 +134,11 @@ module.exports = {
 			Items.ordersLog(req.con, itemsOrder, user, function(err, rows) {
 				res.redirect(`/pembayaran/${rows[0].IdOrders}`);
 			})
-			console.log(itemsOrder);
+			// console.log(itemsOrder);
 
 		}else{
 			req.session.tmpordrsv = itemsOrder;
-			console.log(req.session.tmpordrsv);
+			// console.log(req.session.tmpordrsv);
 			res.redirect('/login');
 		}
 
@@ -163,7 +163,7 @@ module.exports = {
 		let resii = {
 			resi : req.params.resi.toString()
 		}
-		console.log(resii.resi);
+		// console.log(resii.resi);
 
 		Items.pembayaran(req.con, resii, function(err, rows) {
 			Items.datauser(req.con, rows[0].usersId, function(err2, rows2) {
@@ -171,7 +171,7 @@ module.exports = {
 				Items.pembayarantotal(req.con, resii, function(err3, rows3) {
 
 					if(rows.length > 0){
-						console.log(rows3[0].total);
+						// console.log(rows3[0].total);
 						let tax = parseInt(rows3[0].total) * 20 / 100;
 						let wtax = parseInt(rows3[0].total) + (parseInt(rows3[0].total) * 20 / 100);
 
@@ -202,7 +202,7 @@ module.exports = {
 	pelunasan: async function(req, res){
 		let key = req.body;
 		Items.pembayaran(req.con, key, function(err, rows1) {
-			console.log(rows1, 'sjasja');
+			// console.log(rows1, 'sjasja');
 			Items.pembayarantotal(req.con, key, function(err, rows2) {
 				Items.pelunasan(req.con, rows1, rows2, key, function(err, rows3) {
 					res.redirect("/");
@@ -213,7 +213,7 @@ module.exports = {
 
 	deleteOrderPembayaran: async function(req, res){
 		Items.deleteOrderPembayaran(req.con, req.body, function(err, rows) {
-			console.log(rows)
+			// console.log(rows)
 			let tax = parseInt(rows[0].total) * 20 / 100;
 			let wtax = parseInt(rows[0].total) + (parseInt(rows[0].total) * 20 / 100);
 

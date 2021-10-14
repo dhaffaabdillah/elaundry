@@ -5,7 +5,7 @@ module.exports = {
 
 	checklogin: async function(con, type, data, callback) {
 
-        console.log(crypto.crypt(data.password));
+        // console.log(crypto.crypt(data.password));
         if(type == 1){
 		    await con.query(`SELECT * FROM users WHERE NOMORTELEPON = '${data.credentials.toString()}' AND PASS = '${crypto.crypt(data.password.toString())}' `, callback);
         }else{
